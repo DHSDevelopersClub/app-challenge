@@ -3,8 +3,29 @@
   <head>
     <meta charset="utf-8">
     <title>App Challenge</title>
+
+    <link rel="import" href="elements.html">
+    <link rel="stylesheet" href="/styles/main.css">
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
   </head>
+
   <body>
-    <h1>Yeah</h1>
+    <paper-toolbar>
+      <paper-icon-button icon="menu"></paper-icon-button>
+      <div class="title"><b>APP</b></div>
+      <div id="search-bar">Search</div>
+      <img id="profile" src="res/profile.jpg" />
+    </paper-toolbar>
+
+    <div class="main">
+      <div id="list">
+        <div class="item"><img class="list-profile" src="res/profile.jpg" />Name, etc.</div>
+        <div class="item"><img class="list-profile" src="res/profile.jpg" />Name, etc.</div>
+        <div class="item"><img class="list-profile" src="res/profile.jpg" />Name, etc.</div>
+        <div class="item"><img class="list-profile" src="res/profile.jpg" />Name, etc.</div>
+      </div>
+    </div>
+
   </body>
+
 </html>

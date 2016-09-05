@@ -11,6 +11,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="home-view">
@@ -18,17 +20,53 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
+      }
+      #list {
+        display: flex;
+        flex-direction: column;
+        width: 500px;
+        height: 900px;
+        background-color: #fff;
+        border-radius: 5px;
+        margin: 1rem;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      }
+
+      .node {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        padding: 10px;
+      }
+
+      .activity {
+        margin-left: 200px;
+      }
+
+      img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
       }
     </style>
 
-    <div class="card">
-      <div class="circle">1</div>
-      <h1>Home</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.</p>
-      <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
-    </div>
+      <iron-ajax url="list.json" last-response="{{list}}" auto></iron-ajax>
+
+      <div id="main">
+        <div id="list">
+          <iron-list items="[[list]]" as="item">
+            <template>
+              <div class="node">
+                <img class="profile" src="../images/[[item.image]]" />
+                <div class="name">[[item.name]]</div>
+                <div class="activity">[[item.activity]]</div>
+              </div>
+            </template>
+          </iron-list>
+        </div>
+      </div>
+
   </template>
 
   <script>

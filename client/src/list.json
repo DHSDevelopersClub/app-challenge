@@ -1,0 +1,5 @@
+[
+  {"name": "Bob", "image": "profile.jpg", "activity": "Surfing"},
+  {"name": "Tim", "image": "profile.jpg", "activity": "Biking"},
+  {"name": "Mike", "image": "profile.jpg", "activity": "Bowling"}
+]

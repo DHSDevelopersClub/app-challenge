@@ -22,24 +22,35 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-drawer-panel/paper-drawer-panel.html">
+<link rel="import" href="../bower_components/paper-toolbar/paper-toolbar.html">
+<link rel="import" href="../bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="my-icons.html">
+<script src="../js/app.js"></script>
 
 <dom-module id="my-app">
   <template>
     <style>
       :host {
-        --app-primary-color: #4285f4;
+        --app-primary-color: #FF9800;
         --app-secondary-color: black;
 
         display: block;
       }
 
-      app-header {
+      app-toolbar {
         color: #fff;
         background-color: var(--app-primary-color);
       }
       app-header paper-icon-button {
         --paper-icon-button-ink-color: white;
+      }
+
+      app-drawer {
+      --app-drawer-scrim-background: rgba(0, 0, 100, 0.8);
+      --app-drawer-content-container: {
+        background-color: #B0BEC5;
+        }
       }
 
       .drawer-list {
@@ -63,6 +74,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
         font-weight: bold;
       }
+
+      #search-bar {
+        display: flex;
+        width: 500px;
+        height: 50px;
+        background-color: rgba(255, 255, 255, .6);
+        border-radius: 3px;
+        justify-content: center;
+        text-align: left;
+      }
+
+      img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+      }
+
+      input {
+        display: flex;
+        width: 500px;
+        height: 45px;
+        background-color: rgba(255, 255, 255, .5);
+        border-radius: 3px;
+        justify-content: center;
+        text-align: left;
+        color: #FFF;
+        border: none;
+        font-size: 16px;
+        margin-left: 50px; 
+      }
+
+      textarea:focus, input:focus{
+          outline: none;
+      }
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -72,39 +117,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         data="{{routeData}}"
         tail="{{subroute}}"></app-route>
 
-    <app-drawer-layout fullbleed>
       <!-- Drawer content -->
-      <app-drawer>
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="home-view" href="/home">Home</a>
-          <a name="profile" href="/profile">Profile</a>
-          <a name="settings" href="/settings">Settings</a>
-        </iron-selector>
+
+      <app-toolbar>
+        <paper-icon-button icon="menu" app-drawer-toggle></paper-icon-button>
+        <span class="title">CAC Challenge</span>
+        <input type="input" name="name" value="Search">
+        <iron-icon icon="menu"></iron-icon>
+        <a name="profile" href="/profile"><img id="profile" src="../images/profile.jpg" /></a>
+      </app-toolbar>
+
+      <app-drawer swipe-open>
+        <paper-drawer-panel>
+          <app-toolbar>Menu</app-toolbar>
+          <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+            <a name="home-view" href="/home">Home</a>
+            <a name="profile" href="/profile">Profile</a>
+            <a name="settings" href="/settings">Settings</a>
+          </iron-selector>
+
+        </paper-drawer-panel>
       </app-drawer>
 
       <!-- Main content -->
-      <app-header-layout has-scrolling-region>
+      <iron-pages
+          selected="[[page]]"
+          attr-for-selected="name"
+          fallback-selection="view404"
+          role="main">
+        <home-view name="home"></home-view>
+        <profile-view name="profile"></profile-view>
+        <settings-view name="settings"></settings-view>
+        <my-view404 name="view404"></my-view404>
+      </iron-pages>
 
-        <app-header condenses reveals effects="waterfall">
-          <app-toolbar>
-            <paper-icon-button icon="menu" drawer-toggle></paper-icon-button>
-            <div main-title>CAC Challenge</div>
-          </app-toolbar>
-        </app-header>
-
-        <iron-pages
-            selected="[[page]]"
-            attr-for-selected="name"
-            fallback-selection="view404"
-            role="main">
-          <home-view name="home"></home-view>
-          <profile-view name="profile"></profile-view>
-          <settings-view name="settings"></settings-view>
-          <my-view404 name="view404"></my-view404>
-        </iron-pages>
-      </app-header-layout>
-    </app-drawer-layout>
   </template>
 
   <script>

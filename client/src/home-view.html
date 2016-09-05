@@ -20,15 +20,28 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         display: block;
         padding: 10px;
       }
+
+      paper-fab.add {
+        --paper-fab-background: var(--paper-orange-500);
+        --paper-fab-keyboard-focus-background: var(--paper-orange-900);
+        position: absolute;
+        bottom: 10%;
+        right: 25%;
+      }
+
+      #main {
+        text-align: center;
+      }
+
       #list {
         display: flex;
         flex-direction: column;
         width: 500px;
-        height: 900px;
+        height: 100%;
         background-color: #fff;
         border-radius: 5px;
-        margin: 1rem;
         box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+        margin: 0 auto;
       }
 
       .node {
@@ -49,21 +62,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-      <iron-ajax url="list.json" last-response="{{list}}" auto></iron-ajax>
+    <iron-ajax url="list.json" last-response="{{list}}" auto></iron-ajax>
 
-      <div id="main">
-        <div id="list">
-          <iron-list items="[[list]]" as="item">
-            <template>
-              <div class="node">
-                <img class="profile" src="../images/[[item.image]]" />
-                <div class="name">[[item.name]]</div>
-                <div class="activity">[[item.activity]]</div>
-              </div>
-            </template>
-          </iron-list>
-        </div>
+    <div id="main">
+
+      <div id="list">
+        <iron-list items="[[list]]" as="item">
+          <template>
+            <div class="node">
+              <img class="profile" src="../images/[[item.image]]" />
+              <div class="name">[[item.name]]</div>
+              <div class="activity">[[item.activity]]</div>
+            </div>
+          </template>
+        </iron-list>
       </div>
+
+    </div>
+
+    <paper-fab icon="add" class="add"></paper-fab>
 
   </template>
 

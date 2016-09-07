@@ -29,64 +29,107 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         right: 25%;
       }
 
-      #main {
-        text-align: center;
+      .profile {
+        border-radius: 50%;
+        width: 72px;
+        height: 72px;
+      }
+
+      .activity-img {
+        width: 400px;
+        padding: 0;
+        margin: 0;
+        border-radius: 3px;
+        z-index; -1;
       }
 
       #list {
         display: flex;
         flex-direction: column;
-        width: 500px;
-        height: 100%;
-        background-color: #fff;
-        border-radius: 5px;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-        margin: 0 auto;
+        height: 700px;
       }
 
-      .node {
+      .actvity {
+        flex-grow: 1;
+      }
+
+      .card {
+        display: flex;
+        flex-direction: column;
+        font-family: 'Arial', sans-serif;
+        font-size: 20px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+        transition: all 0.4s cubic-bezier(.25,.8,.25,1);
+        border-radius: 3dp;
+        background-color: #FFF;
+        color: #616161;
+        max-width: 400px;
+        height: 225px;
+        margin: 8px auto 8px auto;
+        padding: 0 0 8px 0;
+      }
+
+      .card-bottom {
         display: flex;
         flex-direction: row;
-        width: 100%;
-        padding: 10px;
+        padding: 16px;
       }
 
-      .activity {
-        margin-left: 200px;
+      .name {
+        padding: 8px;
       }
 
-      img {
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
+      .card-top {
+        max-height: 50%;
+      }
+
+      .card:hover {
+        box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
       }
     </style>
 
     <iron-ajax url="list.json" last-response="{{list}}" auto></iron-ajax>
 
-    <div id="main">
+    <div id="list">
 
-      <div id="list">
-        <iron-list items="[[list]]" as="item">
-          <template>
-            <div class="node">
-              <img class="profile" src="../images/[[item.image]]" />
-              <div class="name">[[item.name]]</div>
-              <div class="activity">[[item.activity]]</div>
-            </div>
-          </template>
-        </iron-list>
+      <iron-list items="[[list]]" as="item">
+
+      </iron-list>
+
+      <div class="card">
+        <div class="card-top">
+          <img class="activity-img" src="../images/surfing.jpg"/>
+        </div>
+        <div class="card-bottom">
+          <img class="profile" src="../images/profile.jpg">
+          <div class="name"><b>Surf</b> with <br><b>Justin Beiber</b></div>
+          <div class="location">2.3 Miles Away</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-top">
+          <img class="activity-img" src="../images/surfing.jpg"/>
+        </div>
+        <div class="card-bottom">
+          <img class="profile" src="../images/profile.jpg">
+          <div class="name"><b>Surf</b> with <br><b>Justin Beiber</b></div>
+          <div class="location">2.3 Miles Away</div>
+        </div>
       </div>
 
     </div>
 
-    <paper-fab icon="add" class="add"></paper-fab>
+    <paper-fab icon="add" class="add" on-tap="_updateList()"></paper-fab>
 
   </template>
 
   <script>
     Polymer({
-      is: 'home-view'
+      is: 'home-view',
+    // _updateList: function() {
+    //   document.querySelector('iron-ajax').generateRquest();
+    // }
     });
   </script>
 </dom-module>

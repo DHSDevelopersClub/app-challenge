@@ -1,5 +1,4 @@
 [
-  {"name": "Bob", "image": "profile.jpg", "activity": "Surfing"},
-  {"name": "Tim", "image": "profile.jpg", "activity": "Biking"},
-  {"name": "Mike", "image": "profile.jpg", "activity": "Bowling"}
+  {"name": "Luke Martel", "profileImage": "profile.jpg", "activity": "Surfing"},
+  {"name": "Justin Beiber", "profileImage": "profile.jpg", "activity": "Biking"},
 ]

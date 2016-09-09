@@ -1,0 +1,29 @@
+application: do-stuff-find-people
+
+# Version 0.1
+version: 0-1
+api_version: 1
+runtime: python27
+threadsafe: true
+
+
+handlers:
+# Endpoints api
+- url: /_ah/spi/.*
+  script: server.application
+  secure: always
+
+# Static website
+- url: /
+  static_files: client/index.html
+  upload: client/index\.html
+  secure: always
+- url: /
+  static_dir: client
+  secure: always
+
+libraries:
+- name: endpoints
+  version: 1.0
+- name: pycrypto
+  version: latest

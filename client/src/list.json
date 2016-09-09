@@ -1,4 +1,14 @@
 [
-  {"name": "Luke Martel", "profileImage": "profile.jpg", "activity": "Surfing"},
-  {"name": "Justin Beiber", "profileImage": "profile.jpg", "activity": "Biking"},
+  {"name": "Luke Martel",
+   "profileImage": "profile.jpg",
+   "activity": "Surf",
+   "activityImage": "../images/surfing.jpg",
+   "location": "2.8"
+  },
+  {"name": "Justin Beiber",
+   "profileImage": "profile.jpg",
+   "activity": "Bike",
+   "activityImage": "../images/surfing.jpg",
+   "location": "4.5"
+  }
 ]

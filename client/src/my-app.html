@@ -16,27 +16,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
       :host {
-        --app-primary-color: #FF9800;
-        --app-secondary-color: black;
         display: block;
-      }
-
-      app-toolbar {
-        color: #fff;
-        background-color: var(--app-primary-color);
-        text-align: center;
-      }
-
-      app-header paper-icon-button {
-        --paper-icon-button-ink-color: white;
-      }
-
-      app-drawer {
-      --app-drawer-scrim-background: rgba(0, 0, 0, 0.4);
-      z-index: 1;
-      --app-drawer-content-container: {
-        background-color: #FFF;
-        }
       }
 
       .drawer-list {
@@ -56,40 +36,34 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         font-weight: bold;
       }
 
-      img {
+      #profile-img {
         border-radius: 50%;
         width: 40px;
         height: 40px;
+        margin-top: 8px;
       }
 
       #search-bar {
         display: flex;
         width: 500px;
         height: 40px;
-        background-color: rgba(255, 255, 255, .6);
-        border-radius: 3px;
-        justify-content: center;
-        text-align: left;
-        margin: 5%;
-      }
-
-      input {
-        display: flex;
-        width: 500px;
-        height: 50px;
         background-color: rgba(255, 255, 255, .5);
         border-radius: 3px;
         justify-content: center;
         text-align: left;
+        padding-left: 10px;
+        margin: 5%;
         color: #FFF;
-        border: none;
         font-size: 18px;
+      }
+
+      input {
+        border: none;
       }
 
       textarea:focus, input:focus{
         outline: none;
       }
-
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -105,7 +79,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <span class="title">Let's Go</span>
       <iron-icon icon="search"></iron-icon>
       <input is="iron-input" id="search-bar" placeholder="Search" class="flex">
-      <a name="profile" href="/profile"><img id="profile" src="../images/profile.jpg" /></a>
+      <a name="profile" href="/profile"><img id="profile-img" src="../images/profile.jpg" /></a>
     </app-toolbar>
 
     <app-drawer opened="{{drawerOpen}}">
@@ -140,6 +114,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: String,
           reflectToAttribute: true,
           observer: '_pageChanged'
+        },
+        profileImage: {
+          type: String
         }
       },
 

@@ -24,8 +24,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         --paper-fab-background: var(--paper-orange-500);
         --paper-fab-keyboard-focus-background: var(--paper-orange-900);
         position: absolute;
-        bottom: 10%;
-        right: 25%;
+        right: 5%;
+        bottom: 5%;
       }
 
       .activity-img {
@@ -40,6 +40,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #list {
         display: flex;
         flex-direction: column;
+        padding-bottom: 16px;
       }
 
       .actvity {
@@ -75,7 +76,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       .location {
         padding-top: 72px;
-        padding-left: 50px;
+        padding-left: 68px;
         font-size: 15px
       }
 
@@ -96,6 +97,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       @media screen and (max-width: 832px) {
           .location {
             display: none;
+          }
+          paper-fab.add {
+            right: 2%;
+            bottom: 2%;
           }
       }
     </style>

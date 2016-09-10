@@ -14,41 +14,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <dom-module id="profile-view">
   <template>
-    <style include="shared-styles">
+    <style include="shared-styles iron-flex iron-flex-alignment">
       :host {
         display: block;
         padding: 10px;
       }
 
-      paper-slider {
-        --paper-slider-knob-color: var(--paper-orange-500);
-        --paper-slider-active-color: var(--paper-orange-500);
-      }
-
       .main {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
       }
 
       #profile {
+        width: 100px;
+        height: 100px;
         border-radius: 50%;
       }
     </style>
 
-    <div class="main">
+    <div class="main center vertical layout">
 
       <div class="card">
         <h1>Profile</h1>
         <img id="profile" src="../images/profile.jpg"/>
         <div class=""></div>
-      </div>
-
-      <div class="card">
-        <h1>Settings</h1>
-        <h3>Distance</h3>
-        <div class="slider">0mi<paper-slider value="21"></paper-slider>100mi</div>
-        <h3>Age</h3>
-        <div class="slider">18<paper-slider value="21"></paper-slider>60+</div>
       </div>
 
     </div>

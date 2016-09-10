@@ -17,16 +17,40 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
+      }
+
+      paper-slider {
+        --paper-slider-knob-color: var(--paper-orange-500);
+        --paper-slider-active-color: var(--paper-orange-500);
+      }
+
+      .main {
+        display: flex;
+        flex-direction: row;
+      }
+
+      #profile {
+        border-radius: 50%;
       }
     </style>
 
-    <div class="card">
-      <div class="circle">2</div>
-      <h1>Profile</h1>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
+    <div class="main">
+
+      <div class="card">
+        <h1>Profile</h1>
+        <img id="profile" src="../images/profile.jpg"/>
+        <div class=""></div>
+      </div>
+
+      <div class="card">
+        <h1>Settings</h1>
+        <h3>Distance</h3>
+        <div class="slider">0mi<paper-slider value="21"></paper-slider>100mi</div>
+        <h3>Age</h3>
+        <div class="slider">18<paper-slider value="21"></paper-slider>60+</div>
+      </div>
+
     </div>
   </template>
 

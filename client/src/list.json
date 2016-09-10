@@ -10,5 +10,11 @@
    "activity": "Bike",
    "activityImage": "../images/surfing.jpg",
    "location": "4.5"
-  }
+ },
+ {"name": "Ryan",
+  "profileImage": "default-profile.jpg",
+  "activity": "Climb",
+  "activityImage": "../images/surfing.jpg",
+  "location": "5.6"
+ }
 ]

@@ -30,28 +30,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <!-- <iron-ajax url="list.json" last-response="{{list}}" auto></iron-ajax>
+    <!-- <div class="card-settings">
+      <h1>Settings</h1>
+      <h3>Distance</h3>
+      <div class="slider">0mi<paper-slider value="21"></paper-slider>100mi</div>
+      <h3>Age</h3>
+      <div class="slider">18<paper-slider value="21"></paper-slider>60+</div>
+    </div> -->
 
-    <div id="list">
-
-      <iron-list items="[[list]]" as="item">
-
-      </iron-list>
-
-      <div class="card">
-        <div class="card-top">
-          <img class="activity-img" src="../images/surfing.jpg"/>
-        </div>
-        <div class="card-bottom">
-          <img class="profile" src="../images/profile.jpg">
-          <div class="name"><b>Surf</b> with <br><b>Justin Beiber</b></div>
-          <div class="location">2.3 Miles Away</div>
-        </div>
-      </div> -->
-
-      <main-list data="{{data}}"></main-list>
-
-    <!-- </div> -->
+    <main-list data="{{data}}"></main-list>
 
     <paper-fab icon="add" class="add" on-tap="_updateList()"></paper-fab>
 
@@ -66,9 +53,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           type: Array
         }
       },
-    // _updateList: function() {
-    //   document.querySelector('iron-ajax').generateRquest();
-    // }
     });
   </script>
 </dom-module>

@@ -38,11 +38,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
       }
 
-      paper-input {
-        color: #FFF;
-        margin: 0 auto;
-      }
-
       .drawer-list {
         margin: 0 20px;
       }
@@ -76,6 +71,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         text-align: left;
       }
 
+      input {
+        display: flex;
+        width: 500px;
+        height: 50px;
+        background-color: rgba(255, 255, 255, .5);
+        border-radius: 3px;
+        justify-content: center;
+        text-align: left;
+        color: #FFF;
+        border: none;
+        font-size: 18px;
+      }
+
+      textarea:focus, input:focus{
+        outline: none;
+      }
+
     </style>
 
     <app-location route="{{route}}"></app-location>
@@ -90,7 +102,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <paper-icon-button icon="menu" on-tap="handleClick"></paper-icon-button>
       <span class="title">Let's Go</span>
       <iron-icon icon="search"></iron-icon>
-      <iron-input id="search-bar"></iron-input>
+      <input is="iron-input" id="search-bar" placeholder="Search">
       <a name="profile" href="/profile"><img id="profile" src="../images/profile.jpg" /></a>
     </app-toolbar>
 

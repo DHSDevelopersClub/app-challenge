@@ -29,7 +29,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .activity-img {
-        width: 400px;
+        width: 100%;
+        max-width: 400px;
         padding: 0;
         margin: 0;
         border-radius: 3px;
@@ -56,6 +57,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: #FFF;
         color: #616161;
         max-width: 400px;
+        min-width: 316px;
         height: 225px;
         margin: 8px auto 8px auto;
         padding: 0 0 8px 0;
@@ -89,6 +91,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-radius: 50%;
         width: 72px;
         height: 72px;
+      }
+
+      @media screen and (max-width: 832px) {
+          .location {
+            display: none;
+          }
       }
     </style>
 

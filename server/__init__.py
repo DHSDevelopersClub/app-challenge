@@ -4,7 +4,6 @@
 
 import urllib2
 import json
-
 import endpoints
 from protorpc import message_types, remote, messages
 from google.appengine.api import urlfetch
@@ -17,10 +16,21 @@ CLIENT_IDS = ['651504877594-9qh2hc91udrhht8gv1h69qarfa90hnt3.apps.googleusercont
 __author__ = 'Sebastian Boyd, Duncan Grubbs'
 __copyright__ = 'Copyright (C) 2015 SB Technology Holdings International'
 
+class User(messages.Message):
+    name = messages.StringField(1, required=True)
 
 @endpoints.api(name='backend', version='v1')
 class BackendAPI(remote.Service):
     '''backend api'''
+    @endpoints.method(User, User,
+                      name='insert_user',
+                      path='user',
+                      http_method='POST')
+    def insert_user(self, request):
+        return request
+
+    # def list_users(self, request):
+    #     pass
 
 
 

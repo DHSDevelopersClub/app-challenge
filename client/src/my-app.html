@@ -10,7 +10,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="../elements.html">
+<link rel="import" href="../elements/elements.html">
 
 <dom-module id="my-app">
   <template>
@@ -46,19 +46,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       #search-bar {
         display: flex;
         width: 500px;
-        height: 40px;
-        background-color: rgba(255, 255, 255, .5);
+        height: 46px;
+        background-color: rgba(255, 255, 255, .3);
         border-radius: 3px;
         justify-content: center;
         text-align: left;
         padding-left: 10px;
         margin: 5%;
-        color: #FFF;
+        color: black;
         font-size: 18px;
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
       }
 
       input {
         border: none;
+      }
+
+      input:hover {
+        box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
+        background-color: #FFF;
       }
 
       textarea:focus, input:focus{
@@ -77,8 +83,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-toolbar style="horizontal center layout">
       <paper-icon-button icon="menu" on-tap="handleClick"></paper-icon-button>
       <span class="title">Let's Go</span>
+      <input is="iron-input" id="search-bar" class="flex" on-tap="clicked" placeholder="Search">
       <iron-icon icon="search"></iron-icon>
-      <input is="iron-input" id="search-bar" placeholder="Search" class="flex">
       <a name="profile" href="/profile"><img id="profile-img" src="../images/profile.jpg" /></a>
     </app-toolbar>
 
@@ -157,7 +163,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               }
             } else {
               if (error) {
-                error(xhr);
+                console.error(xhr);
               }
             }
           }

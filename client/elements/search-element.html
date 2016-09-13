@@ -1,0 +1,67 @@
+<!doctype html>
+
+<link rel="import" href="../elements/elements.html">
+
+<dom-module id="search-element">
+  <template>
+    <style is="custom-style" include="shared-styles">
+      :host {
+        display: block;
+        padding: 10px;
+      }
+
+      #search-bar {
+        display: flex;
+        width: 500px;
+        height: 46px;
+        background-color: rgba(255, 255, 255, .3);
+        border-radius: 3px;
+        justify-content: center;
+        text-align: left;
+        padding-left: 10px;
+        margin: 5%;
+        color: black;
+        font-size: 18px;
+        transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+      }
+
+      input {
+        border: none;
+      }
+
+      input:hover {
+        box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
+        background-color: #FFF;
+      }
+
+      textarea:focus, input:focus{
+        outline: none;
+      }
+
+      .isClicked {
+        display: none;
+      }
+    </style>
+
+
+
+    <input is="iron-input" id="search-bar" on-tap="clicked" placeholder="Search">
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'search-element',
+
+      properties: {
+        clicked: {
+          type: Boolean
+        }
+      },
+
+      clicked: function() {
+
+      }
+    });
+  </script>
+</dom-module>

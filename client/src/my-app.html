@@ -1,15 +1,5 @@
 <!doctype html>
 
-<!--
-@license
-Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-
 <link rel="import" href="../elements/elements.html">
 
 <dom-module id="my-app">
@@ -38,14 +28,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       #profile-img {
         border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        width: 46px;
+        height: 46px;
       }
 
       .filter-clicked {
         width: 100px;
         height: 100px;
         background-color: grey;
+      }
+
+      @media screen and (max-width: 832px) {
+          .title {
+            display: none;
+          }
       }
     </style>
 
@@ -60,12 +56,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <app-toolbar style="horizontal center layout">
       <paper-icon-button icon="menu" on-tap="displayNav"></paper-icon-button>
       <span class="title">Let's Go</span>
-
-
       <search-element class="flex"></search-element>
       <paper-icon-button icon="filter-list" on-tap="filterClicked"></paper-icon-button>
 
-      <a name="profile" href="/profile"><img id="profile-img" src="../images/profile.jpg" /></a>
+      <span><a name="profile" href="/profile"><img id="profile-img" src="../images/profile.jpg" /></a></span>
     </app-toolbar>
 
     <app-drawer opened="{{drawerOpen}}">
@@ -128,8 +122,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       ready: function() {
-        var $input = this.querySelector('input');
-        console.log($input);
       },
 
       displayNav: function(e, detail) {
@@ -141,7 +133,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       },
 
       filterClicked: function(e, detail) {
-        console.log('hello');
         this.filterIsClicked = 'filter-clicked';
       }
     });

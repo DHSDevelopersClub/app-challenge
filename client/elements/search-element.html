@@ -10,7 +10,7 @@
         padding: 10px;
       }
 
-      #search-bar {
+      .search-bar {
         display: flex;
         width: 500px;
         height: 46px;
@@ -29,23 +29,17 @@
         border: none;
       }
 
-      input:hover {
-        box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
-        background-color: #FFF;
-      }
-
       textarea:focus, input:focus{
         outline: none;
       }
 
-      .isClicked {
-        display: none;
+      #is-clicked {
+        box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
+        background-color: #FFF;
       }
     </style>
 
-
-
-    <input is="iron-input" id="search-bar" on-tap="clicked" placeholder="Search">
+    <input is="iron-input" class="search-bar" id="{{isClicked}}" on-tap="clicked" placeholder="Search">
 
   </template>
 
@@ -54,13 +48,13 @@
       is: 'search-element',
 
       properties: {
-        clicked: {
-          type: Boolean
+        isClicked: {
+          type: String
         }
       },
 
       clicked: function() {
-
+        this.isClicked = 'is-clicked';
       }
     });
   </script>

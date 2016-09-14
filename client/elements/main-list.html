@@ -114,7 +114,7 @@
       </template>
     </iron-list>
 
-    <paper-fab icon="add" class="add"></paper-fab>
+    <paper-fab icon="add" class="add" on-tap="fabClicked"></paper-fab>
 
   </template>
 
@@ -125,8 +125,15 @@
       properties: {
         data: {
           type: Array
+        },
+        cardClicked: {
+          type: Boolean
         }
       },
+
+      fabClicked: function() {
+        console.log('clicked');
+      }
     });
   </script>
 </dom-module>

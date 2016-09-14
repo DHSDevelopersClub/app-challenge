@@ -4,14 +4,12 @@
 
 <dom-module id="search-element">
   <template>
-    <style is="custom-style" include="shared-styles">
+    <style is="custom-style" include="shared-styles  iron-flex iron-flex-alignment">
       :host {
         display: block;
         padding: 10px;
-      }
-
-      #search {
-        padding-top: 12px;
+        width: 100%;
+        color: white;
       }
 
       .search-bar {
@@ -21,7 +19,7 @@
         border-radius: 3px;
         justify-content: flex-start;
         padding: 0 10px 0 10px;
-        margin: 5%;
+        margin-left: 2%;
         color: white;
         transition: all 0.3s cubic-bezier(.25,.8,.25,1);
       }
@@ -32,6 +30,10 @@
         height: 46px;
         width: 100%;
         font-size: 18px;
+        color: white;
+      }
+      input.is-black {
+        color: black;
       }
 
       textarea:focus, input:focus{
@@ -43,13 +45,32 @@
         background-color: #FFF;
         color: black;
       }
+
+      ::-webkit-input-placeholder  {
+        color: rgba(255,255,255,.6);
+      }
+
+      :-moz-placeholder { /* Firefox 18- */
+         color: rgba(255,255,255,.6);
+      }
+
+      ::-moz-placeholder {  /* Firefox 19+ */
+         color: rgba(255,255,255,.6);
+      }
+
+      :-ms-input-placeholder {
+         color: rgba(255,255,255,.6);
+      }
+
     </style>
 
-    <div name="main_input" id="main_input" class="search-bar">
-      <iron-icon icon="search" id="search"></iron-icon>
-      <input is="iron-input" on-blur="inputBlur" on-tap="clicked" placeholder="Search">
+    <div class="horizontal center layout">
+      <div name="main_input" id="main_input" class="search-bar horizontal center layout flex">
+        <iron-icon icon="search" id="search"></iron-icon>
+        <input is="iron-input" on-blur="inputBlur" id="my_input" on-tap="clicked" placeholder="Search">
+      </div>
+      <paper-icon-button id="filter" icon="filter-list" on-tap="filterClicked"></paper-icon-button>
     </div>
-
 
   </template>
 
@@ -65,10 +86,12 @@
       },
 
       clicked: function() {
-        this.$.main_input.setAttribute("class", "search-bar is-clicked");
+        this.$.main_input.setAttribute("class", "search-bar is-clicked horizontal center layout flex");
+        this.$.my_input.setAttribute("class", "is-black");
       },
       inputBlur: function () {
-        this.$.main_input.setAttribute("class", "search-bar");
+        this.$.main_input.setAttribute("class", "search-bar horizontal center layout flex");
+        this.$.my_input.setAttribute("class", "");
       }
     });
   </script>

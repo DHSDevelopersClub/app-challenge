@@ -33,13 +33,13 @@
         outline: none;
       }
 
-      #is-clicked {
+      .is-clicked {
         box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
         background-color: #FFF;
       }
     </style>
 
-    <input is="iron-input" class="search-bar" id="{{isClicked}}" on-tap="clicked" placeholder="Search">
+    <input is="iron-input" on-blur="inputBlur" name="main_input" class="search-bar" id="main_input" on-tap="clicked" placeholder="Search">
 
   </template>
 
@@ -48,13 +48,17 @@
       is: 'search-element',
 
       properties: {
-        isClicked: {
-          type: String
-        }
+      },
+
+      ready: function() {
+        console.log('serach_ready');
       },
 
       clicked: function() {
-        this.isClicked = 'is-clicked';
+        this.$.main_input.setAttribute("class", "search-bar is-clicked");
+      },
+      inputBlur: function () {
+        this.$.main_input.setAttribute("class", "search-bar");
       }
     });
   </script>

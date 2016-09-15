@@ -21,9 +21,9 @@ __copyright__ = 'Copyright (C) 2016 SB Technology Holdings International'
 @endpoints.api(name='backend', version='v1')
 class BackendAPI(remote.Service):
     '''backend api'''
-    @endpoints.method(messages.AddUser,
+    @endpoints.method(messages.EditUser,
                       messages.StatusMessage,
-                      name='insert_user',
+                      name='edit_user',
                       path='user',
                       http_method='POST')
     def insert_user(self, request):
@@ -32,12 +32,16 @@ class BackendAPI(remote.Service):
             raise endpoints.UnauthorizedException('Invalid token.')
 
         # check user existance
-        if models.User.query(models.User.account == current_user).get():
-            return messages.StatusMessage(status=messages.Status.EXISTS)
+        user = models.User.query(models.User.account == current_user).get()
 
-        # User not registered, add user
-        user = models.User(account=current_user)
-        user.put()
+        if user:
+            # EXISTS
+            for r in request:
+                pass
+        else:
+            # User not registered, add user
+            user = models.User(account=current_user, name=request.name, age=request.age, sex=request.sex)
+            user.put()
 
         return messages.StatusMessage(status=messages.Status.OK)
 

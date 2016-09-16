@@ -30,9 +30,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="card">
         <h1>Settings</h1>
         <h3>Distance</h3>
-        <div class="slider">0mi<paper-slider value="21"></paper-slider>100mi</div>
-        <h3>Age</h3>
-        <div class="slider">18<paper-slider value="21"></paper-slider>60+</div>
+        <div class="slider>">0mi<paper-slider pin min="0" max="100" value="50"></paper-slider>100mi</div>
       </div>
     </div>
 
@@ -40,7 +38,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <script>
     Polymer({
-      is: 'settings-view'
+      is: 'settings-view',
+
+      properties: {
+        distanceValue: {
+          type: String
+        }
+      }
     });
   </script>
 </dom-module>

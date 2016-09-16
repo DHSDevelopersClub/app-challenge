@@ -20,7 +20,6 @@
 
       .activity-img {
         width: 100%;
-        max-width: 400px;
         padding: 0;
         margin: 0;
         border-radius: 3px;
@@ -46,7 +45,8 @@
         border-radius: 3dp;
         background-color: #FFF;
         color: #616161;
-        max-width: 400px;
+        width: 40%;
+        min-width: 35%;
         min-width: 316px;
         height: 225px;
         margin: 8px auto 8px auto;
@@ -55,23 +55,33 @@
 
       .card-bottom {
         display: flex;
-        flex-direction: row;
-        padding: 16px;
+        max-height: 51%;
+        width: 100%;
+        flex-direction: column;
         z-index: 3;
-      }
-
-      .name {
-        padding-left: 16px;
-      }
-
-      .location {
-        padding-top: 72px;
-        padding-left: 68px;
-        font-size: 15px;
+        background-color: #fff;
       }
 
       .card-top {
-        max-height: 50%;
+        max-height: 49%;
+        z-index: 2;
+      }
+
+      .horizontal {
+        display: flex;
+        flex-direction: row;
+        height: 75%;
+      }
+
+      .name {
+        padding: 8px 8px 16px 8px;
+        font-size: 24px
+      }
+
+      .location {
+        font-size: 15px;
+        padding-right: 8px;
+        align-self: flex-end;
       }
 
       .card:hover {
@@ -79,9 +89,11 @@
       }
 
       .profile {
+        margin-left: 8px;
+        margin-top: 8px;
         border-radius: 50%;
-        width: 72px;
-        height: 72px;
+        max-height: 90px;
+        max-width: 90px;
       }
 
       @media screen and (max-width: 832px) {
@@ -92,6 +104,24 @@
             right: 2%;
             bottom: 2%;
           }
+      }
+
+      @media screen and (max-width: 412px) {
+        .card {
+          min-width: 345px;
+        }
+      }
+
+      @media screen and (max-width: 370px) {
+        .card {
+          min-width: 300px;
+        }
+      }
+
+      @media screen and (max-width: 330px) {
+        .card {
+          min-width: 270px;
+        }
       }
     </style>
 
@@ -105,8 +135,10 @@
               <img class="activity-img" src="[[item.activityImage]]"/>
             </div>
             <div class="card-bottom">
-              <img class="profile" src="../images/[[item.profileImage]]">
-              <div class="name"><b>[[item.activity]]</b> with <br><b>[[item.name]]</b></div>
+              <div class="horizontal">
+                <img class="profile" src="../images/[[item.profileImage]]">
+                <div class="name"><b>[[item.activity]]</b> with <br><b>[[item.name]]</b></div>
+              </div>
               <div class="location">[[item.location]] Miles away</div>
             </div>
           </div>

@@ -21,6 +21,19 @@ class EditUser(messages.Message):
     age = messages.IntegerField(2, required=True)
     sex = messages.EnumField(Sex, 3, required=True)
 
+class AddActivity(messages.Message):
+    '''Add an activity'''
+    activity_id = messages.IntegerField(1, required=True)
+    user_created_disrcription = messages.StringField(2)
+    location_lat = messages.IntegerField(3, required=True)
+    location_long = messages.IntegerField(4, required=True)
+    time = messages.DateTi
+
+class GetActivities(messages.Message):
+    activity_id = messages.IntegerField(1) # optional
+    location_lat = messages.IntegerField(2, required=True)
+    location_long = messages.IntegerField(3, required=True)
+
 
 class StatusMessage(messages.Message):
     status = messages.EnumField(Status, 1, required=True)

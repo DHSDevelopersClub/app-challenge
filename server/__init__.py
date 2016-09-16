@@ -45,6 +45,15 @@ class BackendAPI(remote.Service):
 
         return messages.StatusMessage(status=messages.Status.OK)
 
+    @endpoints.method(messages.EditUser,
+                      messages.StatusMessage,
+                      name='edit_user',
+                      path='user',
+                      http_method='POST')
+    def add_activity(self, request):
+
+        return messages.StatusMessage(status=messages.Status.OK)
+
     # def list_users(self, request):
     #     pass
 

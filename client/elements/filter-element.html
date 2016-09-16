@@ -2,28 +2,31 @@
 
 <link rel="import" href="../elements/elements.html">
 
-<dom-module id="filter-elememt">
+<dom-module id="filter-element">
   <template>
     <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
       :host {
-        display: block;
+        display: none;
         padding: 10px;
       }
 
       .main {
         display: flex;
-        width: 100px;
-        height: 100px;
-        background-color: grey;
+        text-align: flex-end;
+        width: 200px;
+        height: 200px;
+        background-color: white;
+        border-radius: 3px;
+        box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
+        padding: 8px;
+        color: #616161;
       }
     </style>
 
-    <div class="main center vertical layout">
-      <div class="card">
-        <h1>Settings</h1>
-        <h3>Distance</h3>
-        <div class="slider>">0mi<paper-slider pin min="0" max="100" value="50"></paper-slider>100mi</div>
-      </div>
+    <div class="main vertical layout">
+      <h1>Filter</h1>
+      <h3>Distance</h3>
+      <div class="slider"><paper-slider pin min="0" max="100" value="50"></paper-slider></div>
     </div>
 
   </template>

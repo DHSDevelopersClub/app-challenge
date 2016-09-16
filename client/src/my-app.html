@@ -46,7 +46,8 @@
       }
     </style>
 
-    <app-location route="{{route}}"></app-location>
+    <app-location route="{{route}}"
+    use-hash-as-path></app-location>
     <app-route
         route="{{route}}"
         pattern="/:page"
@@ -57,27 +58,23 @@
     <app-toolbar style="horizontal center layout">
       <paper-icon-button icon="menu" on-tap="displayNav"></paper-icon-button>
       <span class="title">Let's Go</span>
-
       <search-element class="flex"></search-element>
-
       <span><a name="profile" href="/profile"><img id="profile-img" src="../images/profile.jpg" /></a></span>
     </app-toolbar>
 
-
     <app-drawer opened="{{drawerOpen}}">
         <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="home-view" href="/home">Home</a>
-          <a name="profile" href="/profile">Profile</a>
-          <a name="settings" href="/settings">Settings</a>
+        <iron-selector selected="[[routeData.page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <a name="home" href="#/home">Home</a>
+          <a name="profile" href="#/profile">Profile</a>
+          <a name="settings" href="#/settings">Settings</a>
         </iron-selector>
     </app-drawer>
 
     <!-- Main content -->
-
-    <filter-element></filter-element>
-
-    <div id="filter" class="{{filterIsClicked}}"></div>
+    <div id="main">
+      <filter-element></filter-element>
+    </div>
 
     <iron-pages
         selected="[[page]]"
@@ -101,9 +98,6 @@
           type: String,
           reflectToAttribute: true,
           observer: '_pageChanged'
-        },
-        filterIsClicked: {
-          type: String
         }
       },
 

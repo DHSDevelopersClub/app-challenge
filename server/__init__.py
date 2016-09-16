@@ -23,8 +23,8 @@ class BackendAPI(remote.Service):
     '''backend api'''
     @endpoints.method(messages.EditUser,
                       messages.StatusMessage,
-                      name='edit_user',
-                      path='user',
+                      name='insert_user',
+                      path='insert_user',
                       http_method='POST')
     def insert_user(self, request):
         current_user = endpoints.get_current_user()
@@ -45,14 +45,30 @@ class BackendAPI(remote.Service):
 
         return messages.StatusMessage(status=messages.Status.OK)
 
-    @endpoints.method(messages.EditUser,
-                      messages.StatusMessage,
-                      name='edit_user',
-                      path='user',
+    @endpoints.method(messages.Activity,
+                      messages.ActivityList,
+                      name='get_activities',
+                      path='get_activities',
                       http_method='POST')
-    def add_activity(self, request):
-
-        return messages.StatusMessage(status=messages.Status.OK)
+    def get_activities(self, request):
+        fake_activities = [
+                            messages.Activity(
+                                activity_id=0,
+                                user_created_disrcription="have fun at Stinson Beach",
+                                location_lat=0,
+                                location_long=0),
+                            messages.Activity(
+                                activity_id=666,
+                                user_created_disrcription="sell my soul",
+                                location_lat=0,
+                                location_long=0),
+                            messages.Activity(
+                                activity_id=404,
+                                user_created_disrcription="can't find anything ot do",
+                                location_lat=0,
+                                location_long=0),
+                           ]
+        return messages.ActivityList(activites=fake_activities)
 
     # def list_users(self, request):
     #     pass

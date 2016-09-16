@@ -72,10 +72,6 @@
     </app-drawer>
 
     <!-- Main content -->
-    <div id="main">
-      <filter-element></filter-element>
-    </div>
-
     <iron-pages
         selected="[[page]]"
         attr-for-selected="name"
@@ -119,19 +115,12 @@
         this.page = 'view404';
       },
 
-      ready: function() {
-      },
-
       displayNav: function(e, detail) {
         if(this.drawerOpen){
           this.drawerOpen = false;
         }else{
           this.drawerOpen = true;
         }
-      },
-
-      filterClicked: function(e, detail) {
-        this.filterIsClicked = 'filter-clicked';
       }
     });
   </script>

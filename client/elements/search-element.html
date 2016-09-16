@@ -32,7 +32,7 @@
         font-size: 18px;
         color: white;
       }
-      
+
       input.is-black {
         color: black;
       }
@@ -62,7 +62,6 @@
       :-ms-input-placeholder {
          color: rgba(255,255,255,.6);
       }
-
     </style>
 
     <div class="horizontal center layout">
@@ -73,6 +72,8 @@
       <paper-icon-button id="filter" icon="filter-list" on-tap="filterClicked"></paper-icon-button>
     </div>
 
+    <filter-element class="{{filterIsClicked}}"></filter-element>
+
   </template>
 
   <script>
@@ -80,19 +81,29 @@
       is: 'search-element',
 
       properties: {
-      },
-
-      ready: function() {
-
+        filterIsClicked: {
+          type: String,
+          value: "not-clicked"
+        }
       },
 
       clicked: function() {
         this.$.main_input.setAttribute("class", "search-bar is-clicked horizontal center layout flex");
         this.$.my_input.setAttribute("class", "is-black");
       },
+
       inputBlur: function () {
         this.$.main_input.setAttribute("class", "search-bar horizontal center layout flex");
         this.$.my_input.setAttribute("class", "");
+      },
+
+      filterClicked: function(e, detail) {
+        console.log(filterIsClicked);
+        if(filterIsClicked == 'clicked'){
+          this.filterIsClicked = 'not-clicked';
+        }else{
+          this.filterIsClicked = 'clicked';
+        }
       }
     });
   </script>

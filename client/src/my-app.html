@@ -63,6 +63,7 @@
       <span><a name="profile" href="/profile"><img id="profile-img" src="../images/profile.jpg" /></a></span>
     </app-toolbar>
 
+
     <app-drawer opened="{{drawerOpen}}">
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
@@ -73,6 +74,8 @@
     </app-drawer>
 
     <!-- Main content -->
+
+    <filter-element></filter-element>
 
     <div id="filter" class="{{filterIsClicked}}"></div>
 

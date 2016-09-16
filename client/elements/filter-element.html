@@ -1,0 +1,36 @@
+<!doctype html>
+
+<link rel="import" href="../elements/elements.html">
+
+<dom-module id="filter-elememt">
+  <template>
+    <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+        padding: 10px;
+      }
+
+      .main {
+        display: flex;
+        width: 100px;
+        height: 100px;
+        background-color: grey;
+      }
+    </style>
+
+    <div class="main center vertical layout">
+      <div class="card">
+        <h1>Settings</h1>
+        <h3>Distance</h3>
+        <div class="slider>">0mi<paper-slider pin min="0" max="100" value="50"></paper-slider>100mi</div>
+      </div>
+    </div>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'filter-element',
+    });
+  </script>
+</dom-module>

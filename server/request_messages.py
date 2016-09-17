@@ -17,15 +17,15 @@ class EditUser(messages.Message):
         MALE = 0
         FEMALE = 1
         OTHER = 2
-    name = messages.StringField(1, required=True)
-    age = messages.IntegerField(2, required=True)
-    sex = messages.EnumField(Sex, 3, required=True)
+    name = messages.StringField(1)
+    age = messages.IntegerField(2)
+    sex = messages.EnumField(Sex, 3)
 
 class Activity(messages.Message):
     activity_id = messages.IntegerField(1) # optional
     user_created_disrcription = messages.StringField(2)
-    location_lat = messages.IntegerField(3, required=True)
-    location_long = messages.IntegerField(4, required=True)
+    lat = messages.IntegerField(3, required=True)
+    lng = messages.IntegerField(4, required=True)
 
 class ActivityList(messages.Message):
     activites = messages.MessageField(Activity, 1, repeated=True)

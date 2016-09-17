@@ -13,5 +13,4 @@ class User(ndb.Model):
 class Activity(ndb.Model):
     activity_id = ndb.IntegerProperty()
     user_created_disrcription = ndb.StringProperty()
-    location_lat = ndb.IntegerProperty()
-    location_long = ndb.IntegerProperty()
+    zip_code = ndb.IntegerProperty()

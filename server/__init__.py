@@ -10,6 +10,8 @@ from google.appengine.api import urlfetch
 import google.appengine.api.users
 import models
 import request_messages
+from geo import geomodel, geotypes
+from google.appengine.ext import ndb
 
 API_EXPLORER = '292824132082.apps.googleusercontent.com'
 CLIENT_IDS = ['651504877594-9qh2hc91udrhht8gv1h69qarfa90hnt3.apps.googleusercontent.com',
@@ -67,8 +69,7 @@ class BackendAPI(remote.Service):
             return StatusResponse(status=request_messages.Status.BAD_DATA)
 
         activity = models.Activity(activity_id=request.activity_id,
-                                   lat=request.lat,
-                                   lng=request.lng,
+                                   location = ndb.GeoPt(1, 2),
                                    parent=user_key)
         if request.user_created_disrcription:
             activity.user_created_disrcription = request.user_created_disrcription
@@ -83,12 +84,12 @@ class BackendAPI(remote.Service):
                       path='activites/list',
                       http_method='POST')
     def get_activities(self, request):
-        max_distance = 6 # TODO needs math
         activity_message_list = []
-        ndb_activity_list = models.Activity.query(models.Activity.lat > request.lat - max_distance,
-                                                  models.Activity.lat < request.lat + max_distance,
-                                                  models.Activity.lng > request.lng - max_distance,
-                                                  models.Activity.lng < request.lng + max_distance).fetch()
+        center = geotypes.Point(1, 2)
+        distance = 5000 # in meters
+        ndb_activity_list = models.Activity.proximity_fetch(models.Activity.query(), center, max_results=20,
+                                                            max_distance=distance)
+        print ndb_activity_list
         for a in ndb_activity_list:
             activity = request_messages.Activity(activity_id=a.activity_id, lat=a.lat, lng=a.lng)
             if a.user_created_disrcription:

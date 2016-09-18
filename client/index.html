@@ -52,6 +52,8 @@ This code may only be used under the BSD style license found at http://polymer.g
     <meta name="msapplication-TileColor" content="#FF9800">
     <meta name="msapplication-tap-highlight" content="no">
 
+    <script src="https://apis.google.com/js/api.js"></script>
+
     <!-- Lazy Load Scripts -->
     <script>
       // Setup Polymer options
@@ -112,6 +114,12 @@ This code may only be used under the BSD style license found at http://polymer.g
   </head>
 
   <body>
+    <google-client-loader
+      id="backend"
+      api-root="http://localhost:8080/_ah/api"
+      version="v1"
+      name="backend">
+    </google-client-loader>
     <my-app></my-app>
   </body>
 

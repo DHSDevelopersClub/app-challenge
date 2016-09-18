@@ -20,7 +20,6 @@ handlers:
   secure: always
 - url: /
   static_dir: client
-  secure: always
 
 libraries:
 - name: endpoints

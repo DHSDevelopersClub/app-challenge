@@ -84,22 +84,37 @@ class BackendAPI(remote.Service):
                       path='activites/list',
                       http_method='POST')
     def get_activities(self, request):
-        activity_message_list = []
-        center = geotypes.Point(1, 2)
-        distance = 5000 # in meters
-        ndb_activity_list = models.Activity.proximity_fetch(models.Activity.query(), center, max_results=20,
-                                                            max_distance=distance)
-        print ndb_activity_list
-        for a in ndb_activity_list:
-            activity = request_messages.Activity(activity_id=a.activity_id, lat=a.lat, lng=a.lng)
-            if a.user_created_disrcription:
-                activity.user_created_disrcription = a.user_created_disrcription
-            activity_message_list.append(activity)
-        return request_messages.ActivityList(activites=activity_message_list)
 
-    # def list_users(self, request):
-    #     pass
-
+        # activity_message_list = []
+        # center = geotypes.Point(1, 2)
+        # distance = 5000 # in meters
+        # ndb_activity_list = models.Activity.proximity_fetch(models.Activity.query(), center, max_results=20,
+        #                                                     max_distance=distance)
+        # print ndb_activity_list
+        # for a in ndb_activity_list:
+        #     activity = request_messages.Activity(activity_id=a.activity_id, lat=a.lat, lng=a.lng)
+        #     if a.user_created_disrcription:
+        #         activity.user_created_disrcription = a.user_created_disrcription
+        #     activity_message_list.append(activity)
+        # return request_messages.ActivityList(activites=activity_message_list)
+        fake_activities = [
+                    request_messages.Activity(
+                        activity_id=0,
+                        user_created_disrcription="have fun at Stinson Beach",
+                        lat=0,
+                        lng=0),
+                    request_messages.Activity(
+                        activity_id=666,
+                        user_created_disrcription="sell my soul",
+                        lat=0,
+                        lng=0),
+                    request_messages.Activity(
+                        activity_id=404,
+                        user_created_disrcription="can't find anything to do",
+                        lat=0,
+                        lng=0),
+                   ]
+        return request_messages.ActivityList(activites=fake_activities)
 
 
 application = endpoints.api_server([BackendAPI])

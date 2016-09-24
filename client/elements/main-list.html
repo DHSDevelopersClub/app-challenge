@@ -131,6 +131,14 @@
 
     <paper-fab icon="add" class="add" on-tap="fabClicked"></paper-fab>
 
+    <paper-dialog id="modal" modal>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+      <div class="buttons">
+        <paper-button dialog-confirm autofocus>Tap me to close</paper-button>
+      </div>
+    </paper-dialog>
+
   </template>
 
   <script>
@@ -147,7 +155,7 @@
       },
 
       fabClicked: function() {
-        console.log('clicked');
+        this.$.modal.display = 'none';
       }
     });
   </script>

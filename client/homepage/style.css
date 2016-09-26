@@ -34,10 +34,19 @@ a:hover {
   background: #FF9800;
   color: white;
   font-size: 19px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.5);
 }
 
 .item {
   padding: 8px;
+}
+
+.title {
+  padding-left: 16px;
+}
+
+.sign {
+  padding-right: 16px;
 }
 
 #left {

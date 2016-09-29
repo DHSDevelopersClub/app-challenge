@@ -109,6 +109,7 @@
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl(page + '-view.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
+        this.drawerOpen = false;
       },
 
       _showPage404: function() {
@@ -117,7 +118,7 @@
 
       ready: function() {
         function loaded() {
-          console.log('loadeded');
+          // console.log('loadeded');
         }
 
         var server;
@@ -130,8 +131,8 @@
                 lng: 34,
             });
             request.execute(function(resp) {
-              console.log('resp: ');
-              console.log(resp.activites[1].user_created_disrcription);
+              // console.log('resp: ');
+              // console.log(resp.activites[1].user_created_disrcription);
             });
         });
       },

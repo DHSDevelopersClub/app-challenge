@@ -3,7 +3,7 @@
 <link rel="import" href="../elements/elements.html">
 
 <dom-module id="my-app">
-  <template>
+  <template is="dom-bind" id="app">
     <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
       :host {
         display: block;
@@ -109,10 +109,32 @@
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl(page + '-view.html');
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
+        this.drawerOpen = false;
       },
 
       _showPage404: function() {
         this.page = 'view404';
+      },
+
+      ready: function() {
+        function loaded() {
+          // console.log('loadeded');
+        }
+
+        var server;
+
+        var backend = document.getElementById('backend');
+          backend.addEventListener('google-api-load', function(event) {
+            server = backend.api;
+            request = server.get_activities({
+                lat: 34,
+                lng: 34,
+            });
+            request.execute(function(resp) {
+              // console.log('resp: ');
+              // console.log(resp.activites[1].user_created_disrcription);
+            });
+        });
       },
 
       displayNav: function(e, detail) {

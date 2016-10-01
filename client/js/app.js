@@ -6,3 +6,5 @@ console.log(gapi.backend);
 
 meta = document.querySelector('#meta');
 meta.value = {'a':'b'};
+var app = document.querySelector('#app');
+console.log(app);

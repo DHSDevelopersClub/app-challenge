@@ -1,0 +1,17 @@
+{
+  "name": "Homepage",
+  "authors": [
+    "Duncan Grubbs <duncan.grubbs@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

@@ -110,6 +110,8 @@
       }
     </style>
 
+    <iron-meta id="meta"></iron-meta>
+
     <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
 
     <iron-list id="list" items="[[list]]" as="item">
@@ -144,6 +146,11 @@
         cardClicked: {
           type: Boolean
         }
+      },
+
+      ready: function() {
+        this.data = this.$.meta.byKey('data');
+        console.log(this.data);
       },
 
       fabClicked: function() {

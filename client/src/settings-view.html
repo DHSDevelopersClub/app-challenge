@@ -20,7 +20,10 @@
       <div class="card">
         <h1>Settings</h1>
         <h3>Distance</h3>
-        <div class="slider">0mi<paper-slider pin min="0" max="100" value="50"></paper-slider>100mi</div>
+        <div class="slider">0mi<paper-slider id="distance" pin min="0" max="100" value="20"></paper-slider>100mi</div>
+        <!-- <div class="slider">
+          <paper-range-slider always-show-pin step="1" value-diff-min="11" value-max="40" max="60" min="-10"></paper-range-slider>
+        </div> -->
       </div>
     </div>
 
@@ -34,6 +37,15 @@
         distanceValue: {
           type: String
         }
+      },
+
+      ready: function() {
+        var $distance = this.$.distance;
+        var distance = this.$.distance.value;
+        $distance.addEventListener("change", function(e) {
+          distance = $distance.value;
+          console.log(distance);
+        });
       }
     });
   </script>

@@ -24,6 +24,12 @@
         transition: all 0.3s cubic-bezier(.25,.8,.25,1);
       }
 
+      .is-clicked {
+        box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
+        background-color: #FFF;
+        color: black;
+      }
+
       input {
         border: none;
         background-color: transparent;
@@ -41,26 +47,24 @@
         outline: none;
       }
 
-      .is-clicked {
-        box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
-        background-color: #FFF;
-        color: black;
+      .visable {
+        display: flex;
       }
 
-      ::-webkit-input-placeholder  {
-        color: rgba(255,255,255,.6);
+      ::-webkit-input-placeholder {
+         color: #FFF;
       }
 
-      :-moz-placeholder { /* Firefox 18- */
-         color: rgba(255,255,255,.6);
+      :-moz-placeholder {
+         color: #FFF;
       }
 
-      ::-moz-placeholder {  /* Firefox 19+ */
-         color: rgba(255,255,255,.6);
+      ::-moz-placeholder {
+         color: #FFF;
       }
 
       :-ms-input-placeholder {
-         color: rgba(255,255,255,.6);
+         color: #FFF;
       }
     </style>
 
@@ -72,7 +76,7 @@
       <paper-icon-button id="filter" icon="filter-list" on-tap="filterClicked"></paper-icon-button>
     </div>
 
-    <filter-element class="{{filterIsClicked}}"></filter-element>
+    <!-- <filter-element id="filterSection" class=""></filter-element> -->
 
   </template>
 
@@ -97,14 +101,14 @@
         this.$.my_input.setAttribute("class", "");
       },
 
-      filterClicked: function(e, detail) {
-        console.log(filterIsClicked);
-        if(filterIsClicked == 'clicked'){
-          this.filterIsClicked = 'not-clicked';
-        }else{
-          this.filterIsClicked = 'clicked';
-        }
-      }
+      // filterClicked: function(e, detail) {
+      //   if(this.filterIsClicked == 'clicked'){
+      //     this.$.filterSection.setAttribute("class", "");
+      //   }else{
+      //     this.$.filterSection.setAttribute("class", "visable");
+      //   }
+      //   console.log(this.filterIsClicked);
+      // }
     });
   </script>
 </dom-module>

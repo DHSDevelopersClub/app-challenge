@@ -149,11 +149,16 @@
 
       properties: {
         data: {
-          type: Array
+          type: Array,
+          oberserver: '_dataUpdated'
         },
         cardClicked: {
           type: Boolean
         }
+      },
+
+      _dataUpdated: function() {
+        
       },
 
       ready: function() {

@@ -76,7 +76,7 @@
       <paper-icon-button id="filter" icon="filter-list" on-tap="filterClicked"></paper-icon-button>
     </div>
 
-    <!-- <filter-element id="filterSection" class=""></filter-element> -->
+    <filter-element id="filterSection" class=""></filter-element>
 
   </template>
 
@@ -101,14 +101,14 @@
         this.$.my_input.setAttribute("class", "");
       },
 
-      // filterClicked: function(e, detail) {
-      //   if(this.filterIsClicked == 'clicked'){
-      //     this.$.filterSection.setAttribute("class", "");
-      //   }else{
-      //     this.$.filterSection.setAttribute("class", "visable");
-      //   }
-      //   console.log(this.filterIsClicked);
-      // }
+      filterClicked: function(e, detail) {
+        if(this.filterIsClicked == 'clicked'){
+          this.$.filterSection.setAttribute("class", "");
+        }else{
+          this.$.filterSection.setAttribute("class", "visable");
+        }
+        console.log(this.filterIsClicked);
+      }
     });
   </script>
 </dom-module>

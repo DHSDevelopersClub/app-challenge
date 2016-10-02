@@ -24,11 +24,16 @@ class EditUser(messages.Message):
 class Activity(messages.Message):
     activity_id = messages.IntegerField(1) # optional
     user_created_disrcription = messages.StringField(2)
-    lat = messages.IntegerField(3, required=True)
-    lng = messages.IntegerField(4, required=True)
+    lat = messages.IntegerField(3)
+    lng = messages.IntegerField(4)
+
+class ActivityRequest(messages.Message):
+    activity_id = messages.IntegerField(1)
+    cursor = messages.StringField(2)
 
 class ActivityList(messages.Message):
     activites = messages.MessageField(Activity, 1, repeated=True)
+    cursor = messages.StringField(2)
 
 
 class StatusMessage(messages.Message):

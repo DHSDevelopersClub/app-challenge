@@ -10,7 +10,8 @@ from google.appengine.api import urlfetch
 import google.appengine.api.users
 import models
 import request_messages
-from geo import geomodel, geotypes
+from google.appengine.datastore.datastore_query import Cursor
+# from geo import geomodel, geotypes
 from google.appengine.ext import ndb
 
 API_EXPLORER = '292824132082.apps.googleusercontent.com'
@@ -29,6 +30,7 @@ class BackendAPI(remote.Service):
                       path='insert_user',
                       http_method='POST')
     def insert_user(self, request):
+        ''' add user '''
         current_user = endpoints.get_current_user()
         if current_user is None:
             raise endpoints.UnauthorizedException('Invalid token.')
@@ -46,9 +48,9 @@ class BackendAPI(remote.Service):
                 user.sex = int(request.sex)
         else:
             # User not registered, add user
-            user = models.User(account=current_user, name=request.name, age=request.age, sex=int(request.sex))
+            user = models.User(account=current_user, name=request.name, age=request.age,
+                               sex=int(request.sex))
         user.put()
-
         return request_messages.StatusMessage(status=request_messages.Status.OK)
 
     @endpoints.method(request_messages.Activity,
@@ -57,6 +59,7 @@ class BackendAPI(remote.Service):
                       path='activites/add',
                       http_method='POST')
     def add_activity(self, request):
+        ''' add activity '''
         current_user = endpoints.get_current_user()
         if current_user is None:
             raise endpoints.UnauthorizedException('Invalid token.')
@@ -66,11 +69,9 @@ class BackendAPI(remote.Service):
             user_key = user.key
         except AttributeError:
             # User does not exist
-            return StatusResponse(status=request_messages.Status.BAD_DATA)
+            return request_messages.StatusMessage(status=request_messages.Status.BAD_DATA)
 
-        activity = models.Activity(activity_id=request.activity_id,
-                                   location = ndb.GeoPt(1, 2),
-                                   parent=user_key)
+        activity = models.Activity(activity_id=request.activity_id, parent=user_key)
         if request.user_created_disrcription:
             activity.user_created_disrcription = request.user_created_disrcription
 
@@ -78,43 +79,34 @@ class BackendAPI(remote.Service):
 
         return request_messages.StatusMessage(status=request_messages.Status.OK)
 
-    @endpoints.method(request_messages.Activity,
+    @endpoints.method(request_messages.ActivityRequest,
                       request_messages.ActivityList,
                       name='get_activities',
                       path='activites/list',
                       http_method='POST')
     def get_activities(self, request):
+        ''' get activites '''
+        activity_message_list = []
+        if request.cursor:
+            cursor = Cursor(urlsafe=request.cursor)
+        else:
+            cursor = Cursor()
 
-        # activity_message_list = []
-        # center = geotypes.Point(1, 2)
-        # distance = 5000 # in meters
-        # ndb_activity_list = models.Activity.proximity_fetch(models.Activity.query(), center, max_results=20,
-        #                                                     max_distance=distance)
-        # print ndb_activity_list
-        # for a in ndb_activity_list:
-        #     activity = request_messages.Activity(activity_id=a.activity_id, lat=a.lat, lng=a.lng)
-        #     if a.user_created_disrcription:
-        #         activity.user_created_disrcription = a.user_created_disrcription
-        #     activity_message_list.append(activity)
-        # return request_messages.ActivityList(activites=activity_message_list)
-        fake_activities = [
-                    request_messages.Activity(
-                        activity_id=0,
-                        user_created_disrcription="have fun at Stinson Beach",
-                        lat=0,
-                        lng=0),
-                    request_messages.Activity(
-                        activity_id=666,
-                        user_created_disrcription="sell my soul",
-                        lat=0,
-                        lng=0),
-                    request_messages.Activity(
-                        activity_id=404,
-                        user_created_disrcription="can't find anything to do",
-                        lat=0,
-                        lng=0),
-                   ]
-        return request_messages.ActivityList(activites=fake_activities)
+        activities, new_cursor, more = models.Activity.query().fetch_page(10, start_cursor=cursor)
+
+        print activities
+        for a in activities:
+            activity = request_messages.Activity(activity_id=a.activity_id)
+            if a.user_created_disrcription:
+                activity.user_created_disrcription = a.user_created_disrcription
+            activity_message_list.append(activity)
+
+        if new_cursor and more:
+            print new_cursor.urlsafe()
+            return request_messages.ActivityList(activites=activity_message_list,
+                                                 cursor=new_cursor.urlsafe())
+
+        return request_messages.ActivityList(activites=activity_message_list)
 
 
 application = endpoints.api_server([BackendAPI])

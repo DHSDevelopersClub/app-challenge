@@ -112,9 +112,9 @@
 
     <iron-meta id="meta"></iron-meta>
 
-    <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
+    <!-- <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax> -->
 
-    <iron-list id="list" items="[[list]]" as="item">
+    <iron-list id="list" items="{{data}}" as="item">
       <template>
         <div class="center vertical layout">
           <div class="card">
@@ -148,17 +148,9 @@
       is: 'main-list',
 
       properties: {
-        data: {
-          type: Array,
-          oberserver: '_dataUpdated'
-        },
         cardClicked: {
           type: Boolean
         }
-      },
-
-      _dataUpdated: function() {
-        
       },
 
       ready: function() {

@@ -1,5 +1,4 @@
 var backend = document.getElementById('backend');
-var $list = document.getElementsByTagName('my-app')[0];
 meta = document.querySelector('#meta');
 
 var google = google || {};

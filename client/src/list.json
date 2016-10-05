@@ -1,20 +1,20 @@
 [
   {"name": "Luke Martel",
-   "profileImage": "profile.jpg",
+   "profileImage": "../images/profiles/luke.jpg",
    "activity": "Surf",
-   "activityImage": "../images/surfing.jpg",
+   "activityImage": "../images/activities/surfing.jpeg",
    "location": "2.8"
   },
   {"name": "Kate Rider",
-   "profileImage": "profile.jpg",
+   "profileImage": "../images/profiles/kate.jpg",
    "activity": "Bike",
-   "activityImage": "../images/surfing.jpg",
+   "activityImage": "../images/activities/hiking.jpeg",
    "location": "4.5"
  },
  {"name": "Ryan",
-  "profileImage": "default-profile.jpg",
+  "profileImage": "../images/profiles/ryan.jpg",
   "activity": "Climb",
-  "activityImage": "../images/surfing.jpg",
+  "activityImage": "../images/activities/climbing.jpeg",
   "location": "5.6"
  }
 ]

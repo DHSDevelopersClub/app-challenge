@@ -46,20 +46,10 @@
 
       .card-top {
         height: 55%;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-        background-image: url('../images/surfing.jpg');
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
         background-position: center center;
         background-size: cover;
-      }
-
-      .activity-img {
-        width: 100%;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        border-top-left-radius: 3dp;
-        border-top-right-radius: 3dp;
       }
 
       .card-bottom {
@@ -112,18 +102,16 @@
 
     <iron-meta id="meta"></iron-meta>
 
-    <!-- <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax> -->
+    <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
 
-    <iron-list id="list" items="{{data}}" as="item">
+    <iron-list id="list" items="{{list}}" as="item">
       <template>
         <div class="center vertical layout">
           <div class="card">
-            <div class="card-top">
-              <!-- <img class="activity-img" src="[[item.activityImage]]"/> -->
-            </div>
+            <div class="card-top" style="background-image: url('[[item.activityImage]]');"></div>
             <div class="card-bottom center horizontal layout">
               <img class="profile" src="../images/[[item.profileImage]]">
-              <div class="name"><b>[[item.user_created_disrcription]]</b> with <br><b>[[item.activity_id]]</b></div>
+              <div class="name"><b>[[item.activity]]</b> with <br><b>[[item.name]]</b></div>
               <div class="location flex self-end">[[item.location]] Miles away</div>
             </div>
           </div>
@@ -148,17 +136,16 @@
       is: 'main-list',
 
       properties: {
-        cardClicked: {
-          type: Boolean
-        }
+        cardClicked: Boolean,
+        list: Array,
       },
 
       ready: function() {
         var metaThing = this.$.meta;
         document.addEventListener("data-available", function(e) {
           this.data = metaThing.byKey('data');
-          console.log(this.data);
         });
+        console.log(this.list);
       },
 
       fabClicked: function() {

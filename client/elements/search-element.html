@@ -71,7 +71,7 @@
     <div class="horizontal center layout">
       <div name="main_input" id="main_input" class="search-bar horizontal center layout flex">
         <iron-icon icon="search" id="search"></iron-icon>
-        <input is="iron-input" on-blur="inputBlur" id="my_input" on-tap="clicked" placeholder="Search">
+        <input is="iron-input" bind-value="{{searchValue}}" on-blur="inputBlur" id="my_input" on-tap="clicked" placeholder="Search">
       </div>
       <paper-icon-button id="filter" icon="filter-list" on-tap="filterClicked"></paper-icon-button>
     </div>
@@ -88,7 +88,8 @@
         filterIsClicked: {
           type: String,
           value: "not-clicked"
-        }
+        },
+        searchValue: String
       },
 
       clicked: function() {

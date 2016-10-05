@@ -19,8 +19,8 @@
     <div class="main center vertical layout">
       <div class="card">
         <h1>Settings</h1>
-        <h3>Distance <div id="liveDistance"></div></h3>
-        <div class="slider">0mi<paper-slider id="distance" pin min="0" max="100" value="20"></paper-slider>100mi</div>
+        <h3>Distance: {{distanceValue}} mi</h3>
+        <div class="slider">0mi<paper-slider immediate-value="{{distanceValue}}" id="distance" pin min="0" max="100" value="{{lastValue}}"></paper-slider>100mi</div>
         <!-- <div class="slider">
           <paper-range-slider always-show-pin step="1" value-diff-min="11" value-max="40" max="60" min="-10"></paper-range-slider>
         </div> -->
@@ -34,19 +34,11 @@
       is: 'settings-view',
 
       properties: {
-        distanceValue: {
+        distanceValue: Number,
+        lastValue: {
           type: Number,
-          value: 4
+          value: 20,
         }
-      },
-
-      observers: [
-        'distanceChanged(distanceValue)'
-      ],
-
-      distanceChanged: function() {
-        console.log('updated');
-        this.$.liveDistance.textContent = this.distanceValue;
       },
 
       ready: function() {

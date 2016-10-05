@@ -9,13 +9,15 @@
         display: none;
         align-self: flex-end;
         padding: 10px;
+        z-index: 11;
       }
 
       .main {
         display: flex;
-        text-align: flex-end;
+        text-align: left;
+        border-radius: 4px;
         width: 200px;
-        height: 200px;
+        height: 100px;
         background-color: white;
         border-radius: 2dp;
         box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
@@ -25,8 +27,8 @@
     </style>
 
     <div class="main vertical layout">
-      <h1>Filter</h1>
-      <h3>Distance</h3>
+      <h3>Filter</h3>
+      Distance
       <div class="slider"><paper-slider pin min="0" max="100" value="50"></paper-slider></div>
     </div>
 

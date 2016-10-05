@@ -48,7 +48,14 @@
       }
 
       .visable {
-        display: flex;
+        display: block;
+        position: absolute;
+        right: 0;
+        top: 40px;
+      }
+
+      #filter {
+        margin-right: 16px;
       }
 
       ::-webkit-input-placeholder {
@@ -66,6 +73,7 @@
       :-ms-input-placeholder {
          color: #FFF;
       }
+
     </style>
 
     <div class="horizontal center layout">
@@ -77,7 +85,6 @@
     </div>
 
     <filter-element id="filterSection" class=""></filter-element>
-
   </template>
 
   <script>

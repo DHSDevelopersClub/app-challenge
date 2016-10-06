@@ -67,7 +67,7 @@
         <iron-selector selected="[[routeData.page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="home" href="#/home">Home</a>
           <a name="profile" href="#/profile">Profile</a>
-          <a name="settings" href="#/settings">Settings</a>
+          <!-- <a name="settings" href="#/add">Settings</a> -->
         </iron-selector>
     </app-drawer>
 
@@ -79,7 +79,7 @@
         role="main">
       <home-view name="home" data="{{_inputData}}"></home-view>
       <profile-view name="profile"></profile-view>
-      <settings-view name="settings"></settings-view>
+      <add-view name="add"></add-view>
       <my-view404 name="view404"></my-view404>
     </iron-pages>
 

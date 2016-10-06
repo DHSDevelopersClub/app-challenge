@@ -2,7 +2,7 @@
 
 <link rel="import" href="../elements/elements.html">
 
-<dom-module id="settings-view">
+<dom-module id="add-view">
   <template>
     <style include="shared-styles iron-flex iron-flex-alignment">
       :host {
@@ -16,22 +16,27 @@
       }
     </style>
 
-    <div class="main center vertical layout">
-      <div class="card">
-        <h1>Settings</h1>
-        <h3>Distance: {{distanceValue}} mi</h3>
-        <div class="slider">0mi<paper-slider immediate-value="{{distanceValue}}" id="distance" pin min="0" max="100" value="{{lastValue}}"></paper-slider>100mi</div>
-        <!-- <div class="slider">
-          <paper-range-slider always-show-pin step="1" value-diff-min="11" value-max="40" max="60" min="-10"></paper-range-slider>
-        </div> -->
-      </div>
-    </div>
+    <!-- <div class="main center vertical layout">
+      <paper-material> -->
+        <h1>Add Activity</h1>
+
+        <paper-dropdown-menu label="Dinosaurs">
+          <paper-listbox class="dropdown-content">
+            <paper-item>allosaurus</paper-item>
+            <paper-item>brontosaurus</paper-item>
+            <paper-item>carcharodontosaurus</paper-item>
+            <paper-item>diplodocus</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+
+      <!-- </paper-material> -->
+    <!-- </div> -->
 
   </template>
 
   <script>
     Polymer({
-      is: 'settings-view',
+      is: 'add-view',
 
       properties: {
         distanceValue: Number,

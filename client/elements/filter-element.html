@@ -17,7 +17,6 @@
         text-align: left;
         border-radius: 4px;
         width: 200px;
-        height: 100px;
         background-color: white;
         border-radius: 2dp;
         box-shadow: 0 8px 22px rgba(0,0,0,0.25), 0 4px 4px rgba(0,0,0,0.22);
@@ -28,8 +27,10 @@
 
     <div class="main vertical layout">
       <h3>Filter</h3>
-      Distance
-      <div class="slider"><paper-slider pin min="0" max="100" value="50"></paper-slider></div>
+      Distance: {{distanceValue}} mi
+      <paper-slider immediate-value="{{distanceValue}}" id="distance" pin min="0" max="100" value="{{lastValue}}"></paper-slider>
+      Age Range: {{distanceValue}} mi
+      <paper-slider id="age" pin min="18" max="100" value="{{18}}"></paper-slider>
     </div>
 
   </template>
@@ -37,6 +38,20 @@
   <script>
     Polymer({
       is: 'filter-element',
+      properties: {
+        distanceValue: Number,
+        lastValue: {
+          type: Number,
+          value: 20,
+        }
+      },
+
+      ready: function() {
+        var $distance = this.$.distance;
+        $distance.addEventListener("change", function(e) {
+          this.distanceValue = $distance.value;
+        });
+      }
     });
   </script>
 </dom-module>

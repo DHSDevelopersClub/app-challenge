@@ -10,27 +10,64 @@
         padding: 10px;
       }
 
-      .main {
+      paper-button {
+        background: var(--app-primary-color);
+        color: white;
+        align-self: flex-end;
+        width: 50px;
+        height: 30px;
+      }
+
+      .item {
         display: flex;
         flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 50px;
       }
+
+      span {
+        padding-left: 6px;
+        border-left: thick double var(--app-primary-color);
+        border-width: 2px;
+      }
+
+      .left {
+        display: flex;
+        align-items: center;
+        align-self: flex-start;
+
+        height: 90%;
+        width: 50%;
+        margin: 6px;
+      }
+
+      .right {
+        display: flex;
+        align-items: center;
+        align-self: flex-end;
+      }
+
     </style>
 
-    <!-- <div class="main center vertical layout">
-      <paper-material> -->
+    <div class="main center vertical layout">
+      <div class="card">
         <h1>Add Activity</h1>
 
-        <paper-dropdown-menu label="Dinosaurs">
-          <paper-listbox class="dropdown-content">
-            <paper-item>allosaurus</paper-item>
-            <paper-item>brontosaurus</paper-item>
-            <paper-item>carcharodontosaurus</paper-item>
-            <paper-item>diplodocus</paper-item>
-          </paper-listbox>
-        </paper-dropdown-menu>
+        <iron-ajax url="activities.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
 
-      <!-- </paper-material> -->
-    <!-- </div> -->
+        <iron-list id="list" items="{{list}}" as="item">
+          <template>
+
+            <div class="item">
+              <div class="left"><span>[[item.name]]</span></div>
+              <div class="right"><paper-button on-tap="add" class="add" raised>Add</paper-button></div>
+            </div>
+
+          </template>
+        </iron-list>
+      </div>
+    </div>
 
   </template>
 
@@ -46,11 +83,8 @@
         }
       },
 
-      ready: function() {
-        var $distance = this.$.distance;
-        $distance.addEventListener("change", function(e) {
-          this.distanceValue = $distance.value;
-        });
+      add: function() {
+        console.log('wut');
       }
     });
   </script>

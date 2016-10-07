@@ -29,8 +29,11 @@
       <h3>Filter</h3>
       Distance: {{distanceValue}} mi
       <paper-slider immediate-value="{{distanceValue}}" id="distance" pin min="0" max="100" value="{{lastValue}}"></paper-slider>
-      Age Range: {{distanceValue}} mi
-      <paper-slider id="age" pin min="18" max="100" value="{{18}}"></paper-slider>
+      Min Age: {{minAge}} years
+      <paper-slider class="age" immediate-value="{{minAge}}" pin min="18" max="100" value="{{18}}"></paper-slider>
+      Max Age: {{maxAge}} years
+      <paper-slider class="age" immediate-value="{{maxAge}}" pin min="[[minAge]]" max="100"></paper-slider>
+      <paper-button raised on-tap="filterUpdate">Apply</paper-button>
     </div>
 
   </template>
@@ -40,6 +43,8 @@
       is: 'filter-element',
       properties: {
         distanceValue: Number,
+        minAge: Number,
+        maxAge: Number,
         lastValue: {
           type: Number,
           value: 20,
@@ -51,6 +56,11 @@
         $distance.addEventListener("change", function(e) {
           this.distanceValue = $distance.value;
         });
+      },
+
+      filterUpdate: function() {
+
+
       }
     });
   </script>

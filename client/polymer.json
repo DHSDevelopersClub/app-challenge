@@ -3,7 +3,8 @@
   "shell": "src/my-app.html",
   "fragments": [
     "src/home-view.html",
-    "src/settings-view.html",
+    "src/add-view.html",
+    "src/activity-view.html",
     "src/profile-view.html",
     "src/404-view.html"
   ],

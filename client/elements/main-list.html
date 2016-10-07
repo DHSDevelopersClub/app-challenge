@@ -81,23 +81,6 @@
         padding-right: 8px;
         text-align: right;
       }
-
-      @media screen and (max-width: 832px) {
-        paper-fab.add {
-          right: 2%;
-          bottom: 2%;
-        }
-      }
-
-      @media screen and (max-width: 555px) {
-        .name {
-          font-size: 20px;
-        }
-
-        .card {
-          width: 90%;
-        }
-      }
     </style>
 
     <iron-meta id="meta"></iron-meta>
@@ -107,7 +90,7 @@
     <iron-list id="list" items="{{list}}" as="item">
       <template>
         <div class="center vertical layout">
-          <div class="card">
+          <div class="card" on-tap="cardClicked">
             <div class="card-top" style="background-image: url('[[item.activityImage]]');"></div>
             <div class="card-bottom center horizontal layout">
               <img class="profile" src="../images/[[item.profileImage]]">
@@ -119,15 +102,7 @@
       </template>
     </iron-list>
 
-    <a href="/#/add"><paper-fab icon="add" class="add" on-tap="fabClicked"></paper-fab></a>
-
-    <paper-dialog id="modal" modal>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <div class="buttons">
-        <paper-button dialog-confirm autofocus>Tap me to close</paper-button>
-      </div>
-    </paper-dialog>
+    <a href="/#/add"><paper-fab icon="add" class="add"></paper-fab></a>
 
   </template>
 
@@ -148,8 +123,8 @@
         console.log(this.list);
       },
 
-      fabClicked: function() {
-        this.$.modal.display = 'none';
+      cardClicked: function() {
+        location.href = "#/activity";
       }
     });
   </script>

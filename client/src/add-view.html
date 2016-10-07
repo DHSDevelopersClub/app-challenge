@@ -11,41 +11,24 @@
       }
 
       paper-button {
-        background: var(--app-primary-color);
-        color: white;
         align-self: flex-end;
-        width: 50px;
-        height: 30px;
+        max-width: 75px;
+        max-height:55px;
       }
 
-      .item {
+      paper-date-picker {
+        padding: 8px;
+      }
+
+      .card {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        width: 100%;
-        height: 50px;
+        min-width: 688px;
       }
 
-      span {
-        padding-left: 6px;
-        border-left: thick double var(--app-primary-color);
-        border-width: 2px;
-      }
-
-      .left {
+      .content {
         display: flex;
-        align-items: center;
-        align-self: flex-start;
-
-        height: 90%;
-        width: 50%;
-        margin: 6px;
-      }
-
-      .right {
-        display: flex;
-        align-items: center;
-        align-self: flex-end;
+        flex-direction: row;
       }
 
     </style>
@@ -54,18 +37,14 @@
       <div class="card">
         <h1>Add Activity</h1>
 
-        <iron-ajax url="activities.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
+        <div class="content">
 
-        <iron-list id="list" items="{{list}}" as="item">
-          <template>
+        <div class="search">Search</div>
+        <paper-date-picker date="{{date}}" max-date="December 31, 2016"></paper-date-picker>
+        <paper-button on-tap="add" class="add flex self-end" raised>Submit</paper-button>
 
-            <div class="item">
-              <div class="left"><span>[[item.name]]</span></div>
-              <div class="right"><paper-button on-tap="add" class="add" raised>Add</paper-button></div>
-            </div>
+        </div>
 
-          </template>
-        </iron-list>
       </div>
     </div>
 
@@ -77,10 +56,18 @@
 
       properties: {
         distanceValue: Number,
+        date: {
+          type: String,
+          observer: '_dateChanged'
+        },
         lastValue: {
           type: Number,
           value: 20,
         }
+      },
+
+      _dateChanged: function() {
+        console.log(this.date);
       },
 
       add: function() {

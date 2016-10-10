@@ -84,7 +84,7 @@
       <paper-icon-button id="filter" icon="filter-list" on-tap="filterClicked"></paper-icon-button>
     </div>
 
-    <filter-element id="filterSection" class="" on-blur="inputBlur"></filter-element>
+    <filter-element id="filterSection" class=""></filter-element>
   </template>
 
   <script>
@@ -105,11 +105,9 @@
       },
 
       inputBlur: function () {
-        console.log('blur');
         this.$.main_input.setAttribute("class", "search-bar horizontal center layout flex");
         this.$.my_input.setAttribute("class", "");
         this.$.filterSection.setAttribute("class", "");
-        this.filterIsClicked = 'not-clicked';
       },
 
       filterClicked: function(e, detail) {
@@ -119,8 +117,6 @@
         }else{
           this.$.filterSection.setAttribute("class", "visable");
           this.filterIsClicked = 'clicked';
-          this.$.filterSection.focus();
-          console.log('focus');
         }
       }
     });

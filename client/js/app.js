@@ -1,6 +1,5 @@
 var backend = document.getElementById('backend');
 meta = document.querySelector('#meta');
-
 var google = google || {};
 
 var dataEvent; // The custom Event that will be created
@@ -13,21 +12,22 @@ var dataEvent; // The custom Event that will be created
  }
  dataEvent.eventName = "data-available";
 
-var server;
-
-var backend = document.getElementById('backend');
-  backend.addEventListener('google-api-load', function(e) {
-    server = backend.api;
-    request = server.get_activities({
-        lat: 34,
-        lng: 34,
-    });
-    request.execute(function(resp) {
-      meta.value = resp.activites;
-      if (document.createEvent) {
-        document.dispatchEvent(dataEvent);
-      } else {
-        document.fireEvent("on" + dataEvent.eventType, dataEvent);
-      }
-    });
+backend.addEventListener('google-api-load', function(e) {
+  getActivities(34, 34, backend.api);
 });
+
+
+function getActivities(latitude, longitude, server) {
+  request = server.get_activities({
+      lat: latitude,
+      lng: longitude,
+  });
+  request.execute(function(resp) {
+    meta.value = resp.activites;
+    if (document.createEvent) {
+      document.dispatchEvent(dataEvent);
+    } else {
+      document.fireEvent("on" + dataEvent.eventType, dataEvent);
+    }
+  });
+}

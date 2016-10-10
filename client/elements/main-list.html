@@ -10,7 +10,7 @@
         padding: 10px;
       }
 
-      paper-fab.add {
+      paper-fab#addButton {
         --paper-fab-background: var(--paper-teal-500);
         --paper-fab-keyboard-focus-background: var(--paper-teal-900);
         position: fixed;
@@ -85,7 +85,9 @@
 
     <iron-meta id="meta"></iron-meta>
 
-    <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
+    <!-- <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax> -->
+
+    <h1>{{dataList.0.firstname}}</h1>
 
     <iron-list id="list" items="{{list}}" as="item">
       <template>
@@ -102,7 +104,7 @@
       </template>
     </iron-list>
 
-    <a href="/#/add"><paper-fab icon="add" class="add"></paper-fab></a>
+    <paper-fab icon="add" id="addButton" on-tap="addButtonClicked"></paper-fab>
 
   </template>
 
@@ -111,20 +113,43 @@
       is: 'main-list',
 
       properties: {
-        cardClicked: Boolean,
-        list: Array,
+        dataList: {
+          type: Array,
+          value: function() {
+            return [
+              { firstname: "Jack", lastname: "Aubrey" },
+              { firstname: "Anne", lastname: "Elliot" },
+              { firstname: "Stephen", lastname: "Maturin" },
+              { firstname: "Emma", lastname: "Woodhouse" }
+            ]
+          }
+        }
+      },
+
+      dataUpdated: function(data) {
+        console.log('happening');
+        var metaData = this.$.meta;
+        var data =
+        dataUpdated(data);
+        this.set('list', 'data');
       },
 
       ready: function() {
-        var metaThing = this.$.meta;
-        document.addEventListener("data-available", function(e) {
-          this.data = metaThing.byKey('data');
+        var metaData = this.$.meta;
+
+        var data = this.dataList;
+
+        document.addEventListener("data-available", function() {
+          console.log(data);
         });
-        console.log(this.list);
       },
 
       cardClicked: function() {
-        location.href = "#/activity";
+        location.href = '#/activity';
+      },
+
+      addButtonClicked: function() {
+        location.href = '#/add';
       }
     });
   </script>

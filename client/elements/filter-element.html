@@ -3,7 +3,7 @@
 <link rel="import" href="../elements/elements.html">
 
 <dom-module id="filter-element">
-  <template>
+  <template hidden="{{hide}}">
     <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
       :host {
         display: none;
@@ -43,6 +43,7 @@
       is: 'filter-element',
       properties: {
         distanceValue: Number,
+        hide: Boolean,
         minAge: Number,
         maxAge: Number,
         lastValue: {
@@ -59,8 +60,8 @@
       },
 
       filterUpdate: function() {
-
-
+        this.hide = true;
+        console.log(this.hide);
       }
     });
   </script>

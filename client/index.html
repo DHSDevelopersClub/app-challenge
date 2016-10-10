@@ -105,6 +105,10 @@ Sebastian Boyd - lord.of.all.sebastian@gmail.com
           navigator.serviceWorker.register('/service-worker.js');
         });
       }
+
+      if(location.href != 'http://localhost:8080/#/home'){
+        location.href = '#/home';
+      }
     </script>
 
     <link rel="import" href="/src/my-app.html">

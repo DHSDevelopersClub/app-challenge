@@ -1,20 +1,31 @@
-[
-  {"name": "Luke Martel",
-   "profileImage": "../images/profiles/luke.jpg",
-   "activity": "Surf",
-   "activityImage": "../images/activities/surfing.jpeg",
-   "location": "2.8"
+{
+ "activites": [
+  {
+   "activity_id": "0",
+   "description": "Go surfing at Stinson Beach",
+   "distance": 9.5,
+   "user": {
+    "age": "66",
+    "name": "Luke Martel"
+   }
   },
-  {"name": "Kate Rider",
-   "profileImage": "../images/profiles/kate.jpg",
-   "activity": "Bike",
-   "activityImage": "../images/activities/hiking.jpeg",
-   "location": "4.5"
- },
- {"name": "Ryan",
-  "profileImage": "../images/profiles/ryan.jpg",
-  "activity": "Climb",
-  "activityImage": "../images/activities/climbing.jpeg",
-  "location": "5.6"
- }
-]
+  {
+   "activity_id": "53",
+   "description": "Climb to the top of Half Dome",
+   "distance": 29.8,
+   "user": {
+    "age": "13",
+    "name": "Ryan"
+   }
+  },
+  {
+   "activity": "33",
+   "description": "You are going to need a good bike for this trail",
+   "distance": 0.001,
+   "user": {
+    "age": "21",
+    "name": "Kate Rider"
+   }
+  }
+ ]
+}

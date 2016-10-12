@@ -11,7 +11,7 @@ class Status(messages.Enum):
     ERROR = 5
     NOT_LOGGED_IN = 6
 
-class EditUser(messages.Message):
+class User(messages.Message):
     '''Edit user or update profile'''
     class Sex(messages.Enum):
         MALE = 0
@@ -23,16 +23,22 @@ class EditUser(messages.Message):
 
 class Activity(messages.Message):
     activity_id = messages.IntegerField(1) # optional
-    user_created_disrcription = messages.StringField(2)
+    user_created_description = messages.StringField(2)
     lat = messages.IntegerField(3)
     lng = messages.IntegerField(4)
+
+class ActivityResponse(messages.Message):
+    activity_id = messages.IntegerField(1)
+    description = messages.StringField(2)
+    distance = messages.FloatField(3)
+    user = messages.MessageField(User, 4)
 
 class ActivityRequest(messages.Message):
     activity_id = messages.IntegerField(1)
     cursor = messages.StringField(2)
 
 class ActivityList(messages.Message):
-    activites = messages.MessageField(Activity, 1, repeated=True)
+    activites = messages.MessageField(ActivityResponse, 1, repeated=True)
     cursor = messages.StringField(2)
 
 

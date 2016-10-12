@@ -24,7 +24,7 @@ __copyright__ = 'Copyright (C) 2016 SB Technology Holdings International'
 @endpoints.api(name='backend', version='v1')
 class BackendAPI(remote.Service):
     '''backend api'''
-    @endpoints.method(request_messages.EditUser,
+    @endpoints.method(request_messages.User,
                       request_messages.StatusMessage,
                       name='insert_user',
                       path='insert_user',
@@ -72,8 +72,8 @@ class BackendAPI(remote.Service):
             return request_messages.StatusMessage(status=request_messages.Status.BAD_DATA)
 
         activity = models.Activity(activity_id=request.activity_id, parent=user_key)
-        if request.user_created_disrcription:
-            activity.user_created_disrcription = request.user_created_disrcription
+        if request.user_created_description:
+            activity.user_created_description = request.user_created_description
 
         activity.put()
 
@@ -96,9 +96,11 @@ class BackendAPI(remote.Service):
 
         print activities
         for a in activities:
-            activity = request_messages.Activity(activity_id=a.activity_id)
-            if a.user_created_disrcription:
-                activity.user_created_disrcription = a.user_created_disrcription
+            user = a.key.parent().get()
+            msg_user = request_messages.User(name=user.name, age=user.age)
+            activity = request_messages.ActivityResponse(activity_id=a.activity_id, user=msg_user, distance=9.5)
+            if a.user_created_description:
+                activity.description = a.user_created_description
             activity_message_list.append(activity)
 
         if new_cursor and more:

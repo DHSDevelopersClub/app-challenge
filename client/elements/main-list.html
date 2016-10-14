@@ -115,33 +115,26 @@
       properties: {
         dataList: {
           type: Array,
-          value: function() {
-            return [
-              { firstname: "Jack", lastname: "Aubrey" },
-              { firstname: "Anne", lastname: "Elliot" },
-              { firstname: "Stephen", lastname: "Maturin" },
-              { firstname: "Emma", lastname: "Woodhouse" }
-            ]
-          }
+          observer: 'dataUpdated'
         }
       },
 
       dataUpdated: function(data) {
-        console.log('happening');
-        var metaData = this.$.meta;
-        var data =
-        dataUpdated(data);
-        this.set('list', 'data');
+        console.log('yo');
       },
 
       ready: function() {
         var metaData = this.$.meta;
 
-        var data = this.dataList;
+        function computeData(data) {
+          console.log(this);
+        }
 
         document.addEventListener("data-available", function() {
-          console.log(data);
+          var data = metaData.byKey('data')
+          computeData(data);
         });
+
       },
 
       cardClicked: function() {

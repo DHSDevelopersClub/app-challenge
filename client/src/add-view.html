@@ -10,25 +10,24 @@
         padding: 10px;
       }
 
-      paper-button {
-        align-self: flex-end;
-        max-width: 75px;
-        max-height:55px;
+      paper-date-picker {
+        color: var(--app-primary-color);
       }
 
-      paper-date-picker {
-        padding: 8px;
+      paper-button {
+        padding: 24px;
       }
 
       .card {
         display: flex;
         flex-direction: column;
-        min-width: 688px;
+        width: 60vw;
       }
 
-      .content {
-        display: flex;
-        flex-direction: row;
+      @media screen and (max-width: 731px) {
+        .card {
+          width: 90vw;
+        }
       }
 
     </style>
@@ -37,13 +36,10 @@
       <div class="card">
         <h1>Add Activity</h1>
 
-        <div class="content">
 
         <div class="search">Search</div>
         <paper-date-picker date="{{date}}" max-date="December 31, 2016"></paper-date-picker>
         <paper-button on-tap="add" class="add flex self-end" raised>Submit</paper-button>
-
-        </div>
 
       </div>
     </div>

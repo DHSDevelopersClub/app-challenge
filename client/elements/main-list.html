@@ -85,19 +85,17 @@
 
     <iron-meta id="meta"></iron-meta>
 
-    <!-- <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax> -->
+    <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
 
-    <h1>{{dataList.0.firstname}}</h1>
-
-    <iron-list id="list" items="{{list}}" as="item">
+    <iron-list id="list" items="{{list.activites}}" as="item">
       <template>
         <div class="center vertical layout">
           <div class="card" on-tap="cardClicked">
-            <div class="card-top" style="background-image: url('[[item.activityImage]]');"></div>
+            <div class="card-top" style="background-image: url('[[item.activity_id]]');"></div>
             <div class="card-bottom center horizontal layout">
               <img class="profile" src="../images/[[item.profileImage]]">
-              <div class="name"><b>[[item.activity]]</b> with <br><b>[[item.name]]</b></div>
-              <div class="location flex self-end">[[item.location]] Miles away</div>
+              <div class="name"><b>[[item.activity_id]]</b> with <br><b>[[item.user.name]]</b></div>
+              <div class="location flex self-end">[[item.distance]] Miles away</div>
             </div>
           </div>
         </div>
@@ -124,16 +122,16 @@
       },
 
       ready: function() {
-        var metaData = this.$.meta;
-
-        function computeData(data) {
-          console.log(this);
-        }
-
-        document.addEventListener("data-available", function() {
-          var data = metaData.byKey('data')
-          computeData(data);
-        });
+        // var metaData = this.$.meta;
+        //
+        // function computeData(data) {
+        //   console.log(this);
+        // }
+        //
+        // document.addEventListener("data-available", function() {
+        //   var data = metaData.byKey('data')
+        //   computeData(data);
+        // });
 
       },
 

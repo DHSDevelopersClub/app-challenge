@@ -22,6 +22,11 @@
         display: flex;
         flex-direction: column;
         width: 60vw;
+        justify-content: center;
+      }
+
+      #activity-search {
+        padding: 8px;
       }
 
       @media screen and (max-width: 731px) {
@@ -29,17 +34,16 @@
           width: 90vw;
         }
       }
-
     </style>
 
     <div class="main center vertical layout">
       <div class="card">
         <h1>Add Activity</h1>
 
-
-        <div class="search">Search</div>
+        <!-- <iron-ajax url="../src/activities.json" last-response="{{activities}}" loading="{{req}}" handle-as="json" auto></iron-ajax> -->
+        <vaadin-combo-box value="{{activity}}" items="[[activities]]"></vaadin-combo-box>
         <paper-date-picker date="{{date}}" max-date="December 31, 2016"></paper-date-picker>
-        <paper-button on-tap="add" class="add flex self-end" raised>Submit</paper-button>
+        <paper-button on-tap="add" class="add flex self-end" raised>Submit<iron-icon icon="send"></iron-icon></paper-button>
 
       </div>
     </div>
@@ -51,23 +55,19 @@
       is: 'add-view',
 
       properties: {
-        distanceValue: Number,
-        date: {
-          type: String,
-          observer: '_dateChanged'
+        date: String,
+        activities: {
+          type: Array,
+          value: ['Skiing', 'Hiking', 'Surfing', 'Biking', 'Skating']
         },
-        lastValue: {
-          type: Number,
-          value: 20,
-        }
-      },
-
-      _dateChanged: function() {
-        console.log(this.date);
+        activity: String
       },
 
       add: function() {
-        console.log('wut');
+        var date = this.date;
+        var activity = this.activity;
+        console.log(date);
+        console.log(activity);
       }
     });
   </script>

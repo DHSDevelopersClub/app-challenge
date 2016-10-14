@@ -26,7 +26,8 @@
     "paper-interval-progress": "^1.0.0",
     "iron-interval-behavior": "^1.0.0",
     "paper-range-slider": "^0.1.2",
-    "paper-date-picker": "polymer-paper-datepicker#^1.2.0"
+    "paper-date-picker": "polymer-paper-datepicker#^1.2.0",
+    "vaadin-combo-box": "^1.1.5"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"

@@ -80,6 +80,7 @@ Sebastian Boyd - lord.of.all.sebastian@gmail.com
               new CustomEvent('WebComponentsReady', {bubbles: true})
             );
           }
+          // location.href = '#/home';
         };
 
         var webComponentsSupported = (
@@ -104,10 +105,6 @@ Sebastian Boyd - lord.of.all.sebastian@gmail.com
         window.addEventListener('load', function() {
           navigator.serviceWorker.register('/service-worker.js');
         });
-      }
-
-      if(location.href != 'http://localhost:8080/#/home'){
-        location.href = '#/home';
       }
     </script>
 

@@ -89,9 +89,9 @@
       <template>
         <div class="center vertical layout">
           <div class="card" on-tap="cardClicked">
-            <div class="card-top" style="background-image: url('[[item.activity_id]]');"></div>
+            <div class="card-top" style$="background-image: url('images/activities/[[item.activity_id]].jpeg');"></div>
             <div class="card-bottom center horizontal layout">
-              <img class="profile" src="../images/[[item.profileImage]]">
+              <img class="profile" src="/images/profiles/default-profile.jpg">
               <div class="name"><b>[[item.activity_id]]</b> with <br><b>[[item.user.name]]</b></div>
               <div class="location flex self-end">[[item.distance]] Miles away</div>
             </div>

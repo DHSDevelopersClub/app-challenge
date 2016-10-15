@@ -39,7 +39,7 @@
     <div class="main center vertical layout">
       <div class="card">
         <h1>Add Activity</h1>
-
+        <iron-signals on-iron-signal-api="apiLoaded"></iron-signals>
         <!-- <iron-ajax url="../src/activities.json" last-response="{{activities}}" loading="{{req}}" handle-as="json" auto></iron-ajax> -->
         <vaadin-combo-box value="{{activity}}" items="[[activities]]"></vaadin-combo-box>
         <paper-date-picker date="{{date}}" max-date="December 31, 2016"></paper-date-picker>
@@ -63,11 +63,25 @@
         activity: String
       },
 
+      apiLoaded: function(e, api, sender) {
+        this.api = api;
+      },
+
       add: function() {
         var date = this.date;
         var activity = this.activity;
         console.log(date);
         console.log(activity);
+
+        request = this.api.add_activity({
+            activity_id: 0,
+            lat: 1,
+            lng: 2,
+            user_created_description: 'do stuff and things'
+        });
+        request.execute(function(resp) {
+          console.log(resp);
+        });
       }
     });
   </script>

@@ -105,6 +105,7 @@
         }
       },
       apiReady: function(e) {
+        this.fire('iron-signal', {name: 'api', data: this.$.backend.api})
         latitude = 34;
         longitude = 55;
 

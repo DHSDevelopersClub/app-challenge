@@ -14,8 +14,7 @@
         display: flex;
         flex-direction: column;
         width: 700px;
-        min-width: 300px;
-        height: 400px;
+        height: 70vh;
         min-height: 200px;
         margin: 8px auto 8px auto;
         padding: 0 0 8px 0;
@@ -37,7 +36,7 @@
         display: flex;
         height: 45%;
         max-height: 45%;
-        flex-direction: column;
+        flex-direction: row;
         background-color: #fff;
       }
 
@@ -51,16 +50,32 @@
         margin-left: 8px;
         margin-top: 8px;
         border-radius: 50%;
-        max-height: 90px;
-        height: 10vh;
-        width: 10vh;
-        max-width: 90px;
+        height: 15vh;
+        width: 15vh;
+        min-width: 90px;
+        min-height: 90px;
       }
 
       .request {
         font-size: 15px;
         padding-right: 8px;
-        text-align: right;
+        align-self: flex-start;
+      }
+
+      paper-button {
+        max-height: 45px;
+      }
+
+      @media screen and (max-width: 720px) {
+        .card {
+          width: 90vw;
+        }
+        .card-bottom {
+          flex-direction: column;
+        }
+        .profile-name {
+          flex-direction: row;
+        }
       }
 
       paper-button {
@@ -70,12 +85,14 @@
 
     <div class="center vertical layout">
       <div class="card">
-        <div class="card-top" style="background-image: url('../images/activities/surfing.jpeg');"></div>
-        <div class="card-bottom center horizontal layout">
-          <img class="profile" src="../images/profiles/luke.jpg">
-          <div class="name"><b>Surf</b> with <br><b>someone</b></div>
-          <paper-button raised class="request flex self-end">Request</paper-button>
-          <!-- <div class="location flex self-end">3.4 Miles away</div> -->
+        <div class="card-top" style="background-image: url('../images/activities/0.jpeg');"></div>
+        <div class="card-bottom">
+          <div class="profile-name">
+            <img class="profile" src="../images/profiles/luke.jpg">
+            <div class="name"><b>Climb</b> with <br><b>Duncan Grubbs</b></div>
+          </div>
+          <div class="description"><h3>Description</h3>Super fun surfing at stinson beach!</div>
+          <paper-button raised class="request flex">Request</paper-button>
         </div>
       </div>
     </div>

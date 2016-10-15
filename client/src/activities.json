@@ -1,9 +1,1 @@
-[
-  {"name": "Surfing"},
-  {"name": "Skating"},
-  {"name": "Hiking"},
-  {"name": "Mountain Biking"},
-  {"name": "Snowboarding"},
-  {"name": "Skydiving"},
-  {"name": "Dog Walking"}
-]
+["Surfing", "Snowboarding", "Skating", "Dog Walking", "Dancing", "Hiking", "Skiing", "Rock Climbing", "Mountain Biking"]

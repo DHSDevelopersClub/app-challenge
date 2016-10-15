@@ -40,7 +40,7 @@
       <div class="card">
         <h1>Add Activity</h1>
         <iron-signals on-iron-signal-api="apiLoaded"></iron-signals>
-        <!-- <iron-ajax url="../src/activities.json" last-response="{{activities}}" loading="{{req}}" handle-as="json" auto></iron-ajax> -->
+        <iron-ajax url="../src/activities.json" last-response="{{activities}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
         <vaadin-combo-box value="{{activity}}" items="[[activities]]"></vaadin-combo-box>
         <paper-date-picker date="{{date}}" max-date="December 31, 2016"></paper-date-picker>
         <paper-button on-tap="add" class="add flex self-end" raised>Submit<iron-icon icon="send"></iron-icon></paper-button>
@@ -73,11 +73,21 @@
         console.log(date);
         console.log(activity);
 
+        var id;
+
+        for(var i = 0; i < this.activities.length; i++){
+          if(activity == this.activities[i]){
+            id = i;
+          }
+        }
+
+        console.log(id);
+
         request = this.api.add_activity({
-            activity_id: 0,
+            activity_id: id,
             lat: 1,
             lng: 2,
-            user_created_description: 'do stuff and things'
+            user_created_description: 'Fun stuff'
         });
         request.execute(function(resp) {
           console.log(resp);

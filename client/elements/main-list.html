@@ -120,7 +120,7 @@
       computeData: function(e, detail, sender) {
         for(var i = 0; i < detail.length; i++){
           var num = detail[i].activity_id;
-          detail[i].activityName = this.activities[num].name;
+          detail[i].activityName = this.activities[num];
         }
         this.list = detail;
       },

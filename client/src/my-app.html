@@ -108,15 +108,12 @@
         latitude = 34;
         longitude = 55;
 
-        console.log('ready');
         request = this.$.backend.api.get_activities({
             lat: latitude,
             lng: longitude,
         });
         var self = this;
         request.execute(function(resp) {
-          console.log(resp);
-          console.log(self);
           self.fire('iron-signal', {name: 'activities', data: resp.activites});
         });
       },

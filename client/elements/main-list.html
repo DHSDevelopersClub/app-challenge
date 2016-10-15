@@ -83,7 +83,7 @@
 
     <iron-signals on-iron-signal-activities="computeData"></iron-signals>
 
-    <!-- <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax> -->
+    <iron-ajax url="../src/activities.json" last-response="{{activities}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
 
     <iron-list id="list" items="{{list}}" as="item">
       <template>
@@ -91,8 +91,8 @@
           <div class="card" on-tap="cardClicked">
             <div class="card-top" style$="background-image: url('/images/activities/[[item.activity_id]].jpeg');"></div>
             <div class="card-bottom center horizontal layout">
-              <img class="profile" src="/images/profiles/default-profile.jpg">
-              <div class="name"><b>[[item.activity_id]]</b> with <br><b>[[item.user.name]]</b></div>
+              <img class="profile" src="/images/profiles/ryan.jpg">
+              <div class="name"><b>[[item.activityName]]</b> with <br><b>[[item.user.name]]</b></div>
               <div class="location flex self-end">[[item.distance]] Miles away</div>
             </div>
           </div>
@@ -111,19 +111,17 @@
       properties: {
         dataList: {
           type: Array,
-          observer: 'dataUpdated'
+        },
+        activities: {
+          type: Object,
         }
       },
 
-      dataUpdated: function(data) {
-        console.log('yo');
-      },
-
-      ready: function() {
-
-      },
-
       computeData: function(e, detail, sender) {
+        for(var i = 0; i < detail.length; i++){
+          var num = detail[i].activity_id;
+          detail[i].activityName = this.activities[num].name;
+        }
         this.list = detail;
       },
 

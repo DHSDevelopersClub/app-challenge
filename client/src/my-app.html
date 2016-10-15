@@ -45,6 +45,12 @@
           }
       }
     </style>
+    <google-client-loader
+      id="backend"
+      api-root="http://localhost:8080/_ah/api"
+      version="v1"
+      name="backend">
+    </google-client-loader>
 
     <app-location route="{{route}}"
     use-hash-as-path></app-location>
@@ -97,6 +103,26 @@
           reflectToAttribute: true,
           observer: '_pageChanged'
         }
+      },
+      apiReady: function(e) {
+        latitude = 34;
+        longitude = 55;
+
+        console.log('ready');
+        request = this.$.backend.api.get_activities({
+            lat: latitude,
+            lng: longitude,
+        });
+        var self = this;
+        request.execute(function(resp) {
+          console.log(resp);
+          console.log(self);
+          self.fire('iron-signal', {name: 'activities', data: resp.activites});
+        });
+      },
+
+      listeners: {
+        'google-api-load': 'apiReady'
       },
 
       observers: [

@@ -1,5 +1,4 @@
-{
- "activites": [
+[
   {
    "activity_id": "0",
    "description": "Go surfing at Stinson Beach",
@@ -27,5 +26,4 @@
     "name": "Kate Rider"
    }
   }
- ]
-}
+]

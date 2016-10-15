@@ -81,15 +81,15 @@
       }
     </style>
 
-    <iron-meta id="meta"></iron-meta>
+    <iron-signals on-iron-signal-activities="computeData"></iron-signals>
 
-    <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
+    <!-- <iron-ajax url="../src/list.json" last-response="{{list}}" loading="{{req}}" handle-as="json" auto></iron-ajax> -->
 
-    <iron-list id="list" items="{{list.activites}}" as="item">
+    <iron-list id="list" items="{{list}}" as="item">
       <template>
         <div class="center vertical layout">
           <div class="card" on-tap="cardClicked">
-            <div class="card-top" style$="background-image: url('images/activities/[[item.activity_id]].jpeg');"></div>
+            <div class="card-top" style$="background-image: url('/images/activities/[[item.activity_id]].jpeg');"></div>
             <div class="card-bottom center horizontal layout">
               <img class="profile" src="/images/profiles/default-profile.jpg">
               <div class="name"><b>[[item.activity_id]]</b> with <br><b>[[item.user.name]]</b></div>
@@ -120,17 +120,11 @@
       },
 
       ready: function() {
-        // var metaData = this.$.meta;
-        //
-        // function computeData(data) {
-        //   console.log(this);
-        // }
-        //
-        // document.addEventListener("data-available", function() {
-        //   var data = metaData.byKey('data')
-        //   computeData(data);
-        // });
 
+      },
+
+      computeData: function(e, detail, sender) {
+        this.list = detail;
       },
 
       cardClicked: function() {

@@ -13,6 +13,7 @@ var dataEvent; // The custom Event that will be created
  dataEvent.eventName = "data-available";
 
 backend.addEventListener('google-api-load', function(e) {
+  console.log('apiLoad');
   getActivities(34, 34, backend.api);
 });
 
@@ -24,6 +25,7 @@ function getActivities(latitude, longitude, server) {
   });
   request.execute(function(resp) {
     meta.value = resp.activites;
+    console.log(resp);
     if (document.createEvent) {
       document.dispatchEvent(dataEvent);
     } else {

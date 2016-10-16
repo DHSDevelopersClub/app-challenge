@@ -25,6 +25,8 @@
       }
     </style>
 
+    <iron-signals on-iron-signal-api="apiLoaded"></iron-signals>
+
     <div class="main vertical layout">
       <h3>Filter</h3>
       Distance: {{distanceValue}} mi
@@ -59,9 +61,21 @@
         });
       },
 
+      apiLoaded: function(e, api, sender) {
+        this.api = api;
+      },
+
       filterUpdate: function() {
-        this.hide = true;
-        console.log(this.hide);
+        request = this.api.get_activities({
+            distance: this.distanceValue,
+            min_age: this.minAge,
+            max_age: this.maxAge,
+            activity_id: 0,
+            cursor: 1
+        });
+        request.execute(function(resp) {
+          console.log(resp);
+        });
       }
     });
   </script>

@@ -5,6 +5,9 @@ gapi.load('auth2', function() {
 function signIn() {
   var auth2 = gapi.auth2.getAuthInstance();
   auth2.signIn();
+  var request = auth2.insert_user({
+
+  })
 }
 
 function signOut() {

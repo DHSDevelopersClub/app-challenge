@@ -1,7 +1,7 @@
 <!doctype html>
 
 <link rel="import" href="../elements/elements.html">
-
+<meta name="google-signin-client_id" content="750712428354-g8ap5itgj6uh098oj3feiqqub39b1g1l.apps.googleusercontent.com">
 <dom-module id="my-app">
   <template>
     <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
@@ -49,7 +49,8 @@
       id="backend"
       api-root="http://localhost:8080/_ah/api"
       version="v1"
-      name="backend">
+      name="backend"
+      auth="{{auth}}">
     </google-client-loader>
 
     <app-location route="{{route}}"
@@ -105,6 +106,11 @@
         }
       },
       apiReady: function(e) {
+        console.log(this.auth);
+        this.$.backend.api.auth2.init();
+        var auth2 = this.$.backend.api.auth2.getAuthInstance();
+        auth2.signIn();
+        console.log(auth2);
         this.fire('iron-signal', {name: 'api', data: this.$.backend.api})
         latitude = 34;
         longitude = 55;

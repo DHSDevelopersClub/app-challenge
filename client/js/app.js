@@ -1,3 +1,7 @@
+gapi.load('auth2', function() {
+  gapi.auth2.init();
+});
+
 var backend = document.getElementById('backend');
 meta = document.querySelector('#meta');
 var google = google || {};

@@ -42,7 +42,7 @@
         <iron-signals on-iron-signal-api="apiLoaded"></iron-signals>
         <iron-ajax url="../src/activities.json" last-response="{{activities}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
         <vaadin-combo-box value="{{activity}}" items="[[activities]]"></vaadin-combo-box>
-        <paper-date-picker date="{{date}}" max-date="December 31, 2016"></paper-date-picker>
+        <paper-date-picker date="{{date}}" min-date="{{currentDate}}" max-date="December 31, 2016"></paper-date-picker>
         <paper-button on-tap="add" class="add flex self-end" raised>Submit<iron-icon icon="send"></iron-icon></paper-button>
 
       </div>
@@ -55,11 +55,25 @@
       is: 'add-view',
 
       properties: {
+        currentDate: {
+          type: String
+        },
         date: String,
         activities: {
           type: Array
         },
         activity: String
+      },
+
+      ready: function() {
+        var today = new Date();
+        var day = today.getDate();
+        var monthNumber = today.getMonth() + 1;
+        var months = ['January', 'Feburary', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var month = months[monthNumber];
+        var year = today.getFullYear();
+        this.currentDate = month + ' ' + day.toString() + ', ' + year.toString();
+        console.log(this.currentDate);
       },
 
       apiLoaded: function(e, api, sender) {
@@ -81,6 +95,7 @@
         }
 
         console.log(id);
+        //location.href = '/#/home';
 
         request = this.api.add_activity({
             activity_id: id,

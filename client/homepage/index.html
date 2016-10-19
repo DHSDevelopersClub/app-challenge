@@ -2,8 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="google-signin-client_id" content="750712428354-g8ap5itgj6uh098oj3feiqqub39b1g1l.apps.googleusercontent.com">
     <title>Let's Go - Home</title>
     <link rel="stylesheet" href="style.css">
+    <script src="https://apis.google.com/js/api.js"></script>
   </head>
   <body>
 
@@ -14,7 +16,7 @@
       <div id="right">
         <div class="item"><a href="#">About</a></div>
         <div class="item"><a href="#">Contact</a></div>
-        <div class="item"><a href="#">Login</a></div>
+        <div class="item" onclick="signIn()"><a href="#">Login</a></div>
         <div class="item sign"><a href="#">Sign Up</a></div>
       </div>
     </div>

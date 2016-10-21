@@ -49,7 +49,15 @@
       <div id="right-footer"><a target="_blank" href="https://github.com/DHSDevelopersClub/app-challenge">Source Code</a></div>
     </div>
 
-    <script src="app.js"></script>
+    <script>
+      var list = {"verbs": ['fun', 'creative', 'new', 'active', 'awesome', 'new', 'great', 'super', 'similar', 'athletic', 'smart']}
+      var $adjective = this.$.adjective;
+      function printRandom() {
+        var i = Math.floor((Math.random() * list.verbs.length));
+        $adjective.textContent = 'An app for finding ' + list.verbs[i] + ' friends.';
+      }
+      window.setInterval(printRandom(), 900);
+    </script>
 
   </body>
 </html>

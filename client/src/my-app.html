@@ -1,6 +1,7 @@
 <!doctype html>
 
 <link rel="import" href="../elements/elements.html">
+<script src="https://apis.google.com/js/api.js"></script>
 <meta name="google-signin-client_id" content="750712428354-g8ap5itgj6uh098oj3feiqqub39b1g1l.apps.googleusercontent.com">
 <dom-module id="my-app">
   <template>
@@ -9,35 +10,119 @@
         display: block;
       }
 
-      .drawer-list {
-        margin: 0 20px;
+      html, body {
+        margin: 0 0 0 0;
+        font-family: 'Arial';
       }
 
-      .drawer-list a {
-        display: block;
-        padding: 0 16px;
+      h1 {
+        font-size: 150px;
+        color: #FFF;
+        margin: 0;
+      }
+
+      p {
+        font-size: 40px;
+        color: #FFF;
+        padding: 0;
+        margin: 0;
+      }
+
+      a {
         text-decoration: none;
-        color: var(--app-secondary-color);
-        line-height: 40px;
-        outline: none;
+        color: #FFF;
       }
 
-      .drawer-list a.iron-selected {
+      a:hover {
+        color: #CFD8DC;
+      }
+
+      a#sb {
         color: black;
-        font-weight: bold;
       }
 
-      #profile-img {
-        border-radius: 50%;
-        width: 46px;
-        height: 46px;
+      #top-bar {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 64px;
+        align-items: center;
+        background: #FF9800;
+        color: white;
+        font-size: 19px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.5);
       }
 
-      .filter-clicked {
-        width: 100px;
-        height: 100px;
-        background-color: grey;
+      .item {
+        padding: 8px;
       }
+
+      .title {
+        padding-left: 16px;
+      }
+
+      .sign {
+        padding-right: 16px;
+      }
+
+      #left {
+        display: flex;
+        width: 50%;
+        justify-content: flex-start;
+      }
+
+      #right {
+        display: flex;
+        width: 50%;
+        justify-content: flex-end;
+      }
+
+      #right-footer {
+        width: 50%;
+        padding-right: 16px;
+        text-align: right;
+      }
+
+      #left-footer {
+        padding-left: 16px;
+        display: flex;
+        width: 50%;
+      }
+
+      #splash-content {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100vh;
+        background-image: url('../images/splash.jpeg');
+        background-position: center center;
+        background-size: cover;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #info-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        height: 600px;
+        background: #FFF;
+      }
+
+      #footer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: 100%;
+        background: #FF9800;
+        height: 64px;
+      }
+
+      .info {
+        padding: 16px;
+      }
+
 
       @media screen and (max-width: 832px) {
           .title {
@@ -45,52 +130,54 @@
           }
       }
     </style>
-    <google-client-loader
-      id="backend"
-      api-root="http://localhost:8080/_ah/api"
-      version="v1"
-      name="backend"
-      auth="{{auth}}">
-    </google-client-loader>
 
-    <app-location route="{{route}}"
-    use-hash-as-path></app-location>
-    <app-route
-        route="{{route}}"
-        pattern="/:page"
-        data="{{routeData}}"
-        tail="{{subroute}}"></app-route>
+    <div id="homepage">
 
-    <!-- Drawer content -->
-    <app-toolbar style="horizontal center layout">
-      <paper-icon-button icon="menu" on-tap="displayNav"></paper-icon-button>
-      <span class="title">Let's Go</span>
-      <search-element class="flex"></search-element>
-      <paper-icon-button icon="trending-up"></paper-icon-button>
-      <span><a name="profile" href="/#/profile"><img id="profile-img" src="../images/profiles/default-profile.jpg" /></a></span>
-    </app-toolbar>
+      <div id="top-bar">
+        <div id="left">
+          <div class="item title">Let's Go</div>
+        </div>
+        <div id="right">
+          <div class="item"><a href="#">About</a></div>
+          <div class="item" on-tap="signOut"><a href="#">Sign Out</a></div>
+          <div class="item" on-tap="signIn"><a href="#">Login</a></div>
+          <!-- <google-signin client-id="750712428354-g8ap5itgj6uh098oj3feiqqub39b1g1l.apps.googleusercontent.com"
+          is-authorized="{{authed}}"
+          theme="dark"></google-signin> -->
+        </div>
+      </div>
+      <div id="splash-content">
+        <h1>Let's GO</h1>
+        <p id="adjective">An app for finding active friends.</p>
+      </div>
+      <div id="info-content">
+        <div class="info">
+          <h2>About</h2>
+          Let's Go is an app that allows you to find new friends. It does this by using common activities.
+          You simply add activities to your profile so people can find you, and then you search for people near you
+          with similar activities. If you both request each other, your contact information is shared.
+        </div>
 
-    <app-drawer opened="{{drawerOpen}}">
-        <app-toolbar>Menu</app-toolbar>
-        <iron-selector selected="[[routeData.page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="home" href="#/home">Home</a>
-          <a name="profile" href="#/profile">Profile</a>
-          <!-- <a name="settings" href="#/add">Settings</a> -->
-        </iron-selector>
-    </app-drawer>
+        <div class="info">
+          <h2>Team</h2>
+          Let's Go is built and maintaned by a small team of young student from Northern California.
+          <ul>
+            <li>Ryan McNeil - Founder and CEO</li>
+            <li>Duncan Grubbs - Lead Developer</li>
+            <li>Sebastian Boyd - Lead Backend Developer</li>
+            <li>Luke Martel - Web Developer</li>
+          </ul>
+        </div>
+      </div>
 
-    <!-- Main content -->
-    <iron-pages
-        selected="[[page]]"
-        attr-for-selected="name"
-        fallback-selection="view404"
-        role="main">
-      <home-view name="home" data="{{_inputData}}"></home-view>
-      <profile-view name="profile"></profile-view>
-      <add-view name="add"></add-view>
-      <activity-view name="activity"></activity-view>
-      <my-view404 name="view404"></my-view404>
-    </iron-pages>
+      <div id="footer">
+        <div id="left-footer"><em><b>Copyright © <a target="_blank" id="sb" href="http://sebastianboyd.com">2016 SB Technology Holding International</a></b></em></div>
+        <div id="right-footer"><a target="_blank" href="https://github.com/DHSDevelopersClub/app-challenge">Source Code</a></div>
+      </div>
+
+    </div>
+
+    <main-app id="main"></main-app>
 
   </template>
 
@@ -103,26 +190,56 @@
           type: String,
           reflectToAttribute: true,
           observer: '_pageChanged'
-        }
+        },
+        profile: Object,
+        auth2: Object
       },
-      apiReady: function(e) {
-        console.log(this.auth);
-        this.$.backend.api.auth2.init();
-        var auth2 = this.$.backend.api.auth2.getAuthInstance();
-        auth2.signIn();
-        console.log(auth2);
-        this.fire('iron-signal', {name: 'api', data: this.$.backend.api})
-        latitude = 34;
-        longitude = 55;
 
-        request = this.$.backend.api.get_activities({
-            lat: latitude,
-            lng: longitude,
-        });
+      ready: function() {
+        this.$.main.hidden = true;
+        var list = {"verbs": ['fun', 'creative', 'new', 'active', 'awesome', 'new', 'great', 'super', 'similar', 'athletic', 'smart']}
+        var $adjective = this.$.adjective;
+        window.setInterval(this.printRandom(list, $adjective), 900);
+      },
+
+      printRandom: function(list, $adjective) {
+        var i = Math.floor((Math.random() * list.verbs.length));
+        $adjective.textContent = 'An app for finding ' + list.verbs[i] + ' friends.';
+      },
+
+      changeProfile: function(googleUser) {
+        if (googleUser) {
+          var profile = googleUser.getBasicProfile();
+
+          this.profile = {
+            name: profile.getName(),
+            email: profile.getEmail(),
+            imageUrl: profile.getImageUrl()
+          };
+        } else {
+          this.profile = null;
+          alert('You have been signed out');
+        }
+        // this.fire('iron-signal', {name: 'api', data: this.auth2});
+        console.log(this.profile);
+      },
+
+      signIn: function() {
+        this.$.homepage.hidden = true;
+        this.$.main.hidden = false;
+        gapi.auth2.init();
+        this.auth2 = gapi.auth2.getAuthInstance();
         var self = this;
-        request.execute(function(resp) {
-          self.fire('iron-signal', {name: 'activities', data: resp.activites});
-        });
+        this.auth2.signIn()
+        .then(this.changeProfile);
+      },
+
+      signOut: function() {
+        var auth2 = gapi.auth2.getAuthInstance();
+
+        // Sign-Out
+        auth2.signOut()
+        .then(this.changeProfile);
       },
 
       listeners: {

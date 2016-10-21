@@ -1,0 +1,36 @@
+<!doctype html>
+
+<link rel="import" href="../elements/elements.html">
+<dom-module id="api-request">
+  <template>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'api-request',
+
+      properties: {
+        parameters: {
+          type: Object,
+          observer: '_paramChange'
+        }
+      },
+
+      _paramChange: function() {
+        getActivities(this.parameters);
+        getUser(this.parameters);
+      },
+
+      getActivities: function(parameters) {
+        request = auth2.get_activities({
+            lat: parameters.latitude,
+            lng: parameters.longitude,
+        });
+        request.execute(function(resp) {
+          self.fire('iron-signal', {name: 'activities', data: resp.activites});
+        });
+      }
+    });
+  </script>
+</dom-module>

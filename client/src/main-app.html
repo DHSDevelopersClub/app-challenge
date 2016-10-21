@@ -1,0 +1,128 @@
+<!doctype html>
+
+<link rel="import" href="../elements/elements.html">
+<dom-module id="main-app">
+  <template>
+    <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
+      :host {
+        display: block;
+      }
+
+      .drawer-list {
+        margin: 0 20px;
+      }
+
+      .drawer-list a {
+        display: block;
+        padding: 0 16px;
+        text-decoration: none;
+        color: var(--app-secondary-color);
+        line-height: 40px;
+        outline: none;
+      }
+
+      .drawer-list a.iron-selected {
+        color: black;
+        font-weight: bold;
+      }
+
+      #profile-img {
+        border-radius: 50%;
+        width: 46px;
+        height: 46px;
+      }
+
+      .filter-clicked {
+        width: 100px;
+        height: 100px;
+        background-color: grey;
+      }
+
+      @media screen and (max-width: 832px) {
+          .title {
+            display: none;
+          }
+      }
+    </style>
+    <app-location route="{{route}}"
+    use-hash-as-path></app-location>
+    <app-route
+        route="{{route}}"
+        pattern="/:page"
+        data="{{routeData}}"
+        tail="{{subroute}}"></app-route>
+
+    <!-- Drawer content -->
+    <app-toolbar style="horizontal center layout">
+      <paper-icon-button icon="menu" on-tap="displayNav"></paper-icon-button>
+      <span class="title">Let's Go</span>
+      <search-element class="flex"></search-element>
+      <paper-icon-button icon="trending-up"></paper-icon-button>
+      <span><a name="profile" href="/#/profile"><img id="profile-img" src="../images/profiles/default-profile.jpg" /></a></span>
+    </app-toolbar>
+
+    <app-drawer opened="{{drawerOpen}}">
+        <app-toolbar>Menu</app-toolbar>
+        <iron-selector selected="[[routeData.page]]" attr-for-selected="name" class="drawer-list" role="navigation">
+          <a name="home" href="#/home">Home</a>
+          <a name="profile" href="#/profile">Profile</a>
+          <!-- <a name="settings" href="#/add">Settings</a> -->
+        </iron-selector>
+    </app-drawer>
+
+    <!-- Main content -->
+    <iron-pages
+        selected="[[page]]"
+        attr-for-selected="name"
+        fallback-selection="view404"
+        role="main">
+      <home-view name="home" data="{{_inputData}}"></home-view>
+      <profile-view name="profile"></profile-view>
+      <add-view name="add"></add-view>
+      <activity-view name="activity"></activity-view>
+      <my-view404 name="view404"></my-view404>
+    </iron-pages>
+
+  </template>
+
+  <script>
+    Polymer({
+      is: 'main-app',
+
+      properties: {
+        page: {
+          type: String,
+          reflectToAttribute: true,
+          observer: '_pageChanged'
+        }
+      },
+
+      observers: [
+        '_routePageChanged(routeData.page)'
+      ],
+
+      _routePageChanged: function(page) {
+        this.page = page || 'home';
+      },
+
+      _pageChanged: function(page) {
+        // Load page import on demand. Show 404 page if fails
+        var resolvedPageUrl = this.resolveUrl(page + '-view.html');
+        this.importHref(resolvedPageUrl, null, this._showPage404, true);
+        this.drawerOpen = false;
+      },
+
+      _showPage404: function() {
+        this.page = 'view404';
+      },
+
+      displayNav: function(e, detail) {
+        if(this.drawerOpen){
+          this.drawerOpen = false;
+        }else{
+          this.drawerOpen = true;
+        }
+      }
+    });
+  </script>
+</dom-module>

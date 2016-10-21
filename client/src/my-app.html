@@ -196,7 +196,7 @@
       },
 
       ready: function() {
-        this.$.main.hidden = true;
+        this.$.main.style.display = 'none';
         var list = {"verbs": ['fun', 'creative', 'new', 'active', 'awesome', 'new', 'great', 'super', 'similar', 'athletic', 'smart']}
         var $adjective = this.$.adjective;
         window.setInterval(this.printRandom(list, $adjective), 900);
@@ -217,7 +217,7 @@
             imageUrl: profile.getImageUrl()
           };
         } else {
-          this.profile = null;
+          // this.profile = null;
           alert('You have been signed out');
         }
         // this.fire('iron-signal', {name: 'api', data: this.auth2});
@@ -226,7 +226,7 @@
 
       signIn: function() {
         this.$.homepage.hidden = true;
-        this.$.main.hidden = false;
+        this.$.main.style.display = 'block';
         gapi.auth2.init();
         this.auth2 = gapi.auth2.getAuthInstance();
         var self = this;

@@ -1,8 +1,6 @@
 <!doctype html>
 
 <link rel="import" href="../elements/elements.html">
-<script src="https://apis.google.com/js/api.js"></script>
-<meta name="google-signin-client_id" content="750712428354-g8ap5itgj6uh098oj3feiqqub39b1g1l.apps.googleusercontent.com">
 <dom-module id="my-app">
   <template>
     <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
@@ -13,7 +11,6 @@
       html, body {
         margin: 0;
         padding: 0;
-        font-family: 'Arial';
         overflow-x: hidden;
         background: #FFF;
       }
@@ -230,9 +227,7 @@
           type: String,
           reflectToAttribute: true,
           observer: '_pageChanged'
-        },
-        profile: Object,
-        auth2: Object
+        }
       },
 
       ready: function() {
@@ -247,65 +242,16 @@
         $adjective.textContent = 'An app for finding ' + list.verbs[i] + ' friends.';
       },
 
-      changeProfile: function(googleUser) {
-        if (googleUser) {
-          var profile = googleUser.getBasicProfile();
-
-          this.profile = {
-            name: profile.getName(),
-            email: profile.getEmail(),
-            imageUrl: profile.getImageUrl()
-          };
-        } else {
-          alert('You have been signed out');
-        }
-        // self.fire('iron-signal', {name: 'api', data: this.auth2});
-        console.log(this.profile);
-        this.signOut;
-      },
-
       signIn: function() {
-        this.$.homepage.hidden = true;
         this.$.main.style.display = 'block';
-        gapi.auth2.init();
-        this.auth2 = gapi.auth2.getAuthInstance();
-        this.auth2.signIn()
-        .then(this.changeProfile);
+        this.$.homepage.style.display = 'none';
       },
 
       signOut: function() {
-        this.profile = null;
-        this.auth2 = gapi.auth2.getAuthInstance();
-        // Sign-Out
+        console.log('out');
+        /*this.auth2 = gapi.auth2.getAuthInstance();
         this.auth2.signOut()
-        .then(this.changeProfile);
-      },
-
-      observers: [
-        '_routePageChanged(routeData.page)'
-      ],
-
-      _routePageChanged: function(page) {
-        this.page = page || 'home';
-      },
-
-      _pageChanged: function(page) {
-        // Load page import on demand. Show 404 page if fails
-        var resolvedPageUrl = this.resolveUrl(page + '-view.html');
-        this.importHref(resolvedPageUrl, null, this._showPage404, true);
-        this.drawerOpen = false;
-      },
-
-      _showPage404: function() {
-        this.page = 'view404';
-      },
-
-      displayNav: function(e, detail) {
-        if(this.drawerOpen){
-          this.drawerOpen = false;
-        }else{
-          this.drawerOpen = true;
-        }
+        .then(this.changeProfile);*/
       }
     });
   </script>

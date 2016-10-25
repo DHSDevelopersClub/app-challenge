@@ -18,12 +18,12 @@
       },
 
       _paramChange: function() {
-        getActivities(this.parameters);
+        this.getActivities(this.parameters);
         getUser(this.parameters);
       },
 
       getActivities: function(parameters) {
-        request = auth2.get_activities({
+        request = parameters.auth2.get_activities({
             lat: parameters.latitude,
             lng: parameters.longitude,
         });

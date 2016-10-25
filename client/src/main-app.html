@@ -1,6 +1,8 @@
 <!doctype html>
 
 <link rel="import" href="../elements/elements.html">
+<script src="https://apis.google.com/js/api.js"></script>
+<meta name="google-signin-client_id" content="750712428354-g8ap5itgj6uh098oj3feiqqub39b1g1l.apps.googleusercontent.com">
 <dom-module id="main-app">
   <template>
     <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
@@ -58,7 +60,7 @@
       <span class="title">Let's Go</span>
       <search-element class="flex"></search-element>
       <paper-icon-button icon="trending-up"></paper-icon-button>
-      <span><a name="profile" href="/#/profile"><img id="profile-img" src="../images/profiles/default-profile.jpg" /></a></span>
+      <span><img on-tap="signIn" id="profile-img" src="[[imageUrl]]" /></span>
     </app-toolbar>
 
     <app-drawer opened="{{drawerOpen}}">
@@ -66,9 +68,10 @@
         <iron-selector selected="[[routeData.page]]" attr-for-selected="name" class="drawer-list" role="navigation">
           <a name="home" href="#/home">Home</a>
           <a name="profile" href="#/profile">Profile</a>
-          <!-- <a name="settings" href="#/add">Settings</a> -->
         </iron-selector>
     </app-drawer>
+
+    <api-request parameters="{{params}}"></api-request>
 
     <!-- Main content -->
     <iron-pages
@@ -94,6 +97,13 @@
           type: String,
           reflectToAttribute: true,
           observer: '_pageChanged'
+        },
+        profile: Object,
+        auth2: Object,
+        params: Object,
+        imageUrl: {
+          type: String,
+          value: '../images/profiles/default-profile.jpg'
         }
       },
 
@@ -114,6 +124,32 @@
 
       _showPage404: function() {
         this.page = 'view404';
+      },
+
+      changeProfile: function(googleUser) {
+        console.log(this)
+        var apiProfile = googleUser.getBasicProfile();
+
+        this.profile = {
+          name: apiProfile.getName(),
+          email: apiProfile.getEmail(),
+          imageUrl: apiProfile.getImageUrl()
+        };
+      },
+
+      signIn: function() {
+        
+        gapi.auth2.init();
+        this.auth2 = gapi.auth2.getAuthInstance();
+
+        var params = {'latitude': 23, 'longitude': 34, 'auth2': this.auth2};
+        this.set('params', params);
+        this.auth2.signIn()
+        .then(this.changeProfile);
+      },
+
+      ready: function() {
+        location.href = '/#/home';
       },
 
       displayNav: function(e, detail) {

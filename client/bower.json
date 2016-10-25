@@ -1,7 +1,7 @@
 {
-  "name": "polymer-starter-kit",
+  "name": "lets-go",
   "authors": [
-    "The Polymer Authors"
+    "Duncan Grubbs"
   ],
   "private": true,
   "dependencies": {
@@ -22,7 +22,6 @@
     "paper-search": "^1.1.12",
     "neon-animation": "^1.2.4",
     "google-apis": "GoogleWebComponents/google-apis#^1.1.6",
-    "paper-dialog": "^1.1.0",
     "paper-interval-progress": "^1.0.0",
     "iron-interval-behavior": "^1.0.0",
     "paper-range-slider": "^0.1.2",

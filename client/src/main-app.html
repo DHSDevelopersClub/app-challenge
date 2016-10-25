@@ -1,8 +1,6 @@
 <!doctype html>
 
 <link rel="import" href="../elements/elements.html">
-<script src="https://apis.google.com/js/api.js"></script>
-<meta name="google-signin-client_id" content="750712428354-g8ap5itgj6uh098oj3feiqqub39b1g1l.apps.googleusercontent.com">
 <dom-module id="main-app">
   <template>
     <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
@@ -128,28 +126,40 @@
 
       changeProfile: function(googleUser) {
         console.log(this)
-        var apiProfile = googleUser.getBasicProfile();
 
-        this.profile = {
-          name: apiProfile.getName(),
-          email: apiProfile.getEmail(),
-          imageUrl: apiProfile.getImageUrl()
-        };
       },
 
       signIn: function() {
-        
+        var self = this;
         gapi.auth2.init();
         this.auth2 = gapi.auth2.getAuthInstance();
+        console.log(this.auth2);
 
-        var params = {'latitude': 23, 'longitude': 34, 'auth2': this.auth2};
-        this.set('params', params);
         this.auth2.signIn()
-        .then(this.changeProfile);
-      },
+        .then(function(googleUser){
 
-      ready: function() {
-        location.href = '/#/home';
+          var apiProfile = googleUser.getBasicProfile();
+
+          self.profile = {
+            name: apiProfile.getName(),
+            email: apiProfile.getEmail(),
+            imageUrl: apiProfile.getImageUrl()
+          };
+
+          self.imageUrl = self.profile.imageUrl;
+
+          var request = self.auth2.getActivities({
+            lat: 23,
+            long: 34,
+          });
+          request.execute(function(resp) {
+            console.log(resp.activities);
+          });
+
+          var params = {'latitude': 23, 'longitude': 34, 'auth2': self.auth2};
+          self.set('params', params);
+
+        });
       },
 
       displayNav: function(e, detail) {

@@ -176,8 +176,7 @@
           <div class="item title">Let's Go</div>
         </div>
         <div id="right">
-          <div class="item"><a href="#">About</a></div>
-          <div class="item" on-tap="signOut"><a href="#">Sign Out</a></div>
+          <div class="item" on-tap="scrollAbout"><a href="#">About</a></div>
           <div class="item" on-tap="signIn"><a href="#">Login</a></div>
         </div>
       </div>
@@ -231,10 +230,11 @@
       },
 
       ready: function() {
+        var self = this;
         this.$.main.style.display = 'none';
         var list = {"verbs": ['fun', 'creative', 'new', 'active', 'awesome', 'new', 'great', 'super', 'similar', 'athletic', 'smart']}
         var $adjective = this.$.adjective;
-        window.setInterval(this.printRandom(list, $adjective), 900);
+        window.setInterval(self.printRandom(list, $adjective), 900);
       },
 
       printRandom: function(list, $adjective) {
@@ -247,11 +247,8 @@
         this.$.homepage.style.display = 'none';
       },
 
-      signOut: function() {
-        console.log('out');
-        /*this.auth2 = gapi.auth2.getAuthInstance();
-        this.auth2.signOut()
-        .then(this.changeProfile);*/
+      scrollAbout: function() {
+        window.scrollTo(0, 700);
       }
     });
   </script>

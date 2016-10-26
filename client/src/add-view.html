@@ -36,6 +36,8 @@
       }
     </style>
 
+    <api-request parameters="{{params}}"></api-request>
+
     <div class="main center vertical layout">
       <div class="card">
         <h1>Add Activity</h1>
@@ -62,7 +64,8 @@
         activities: {
           type: Array
         },
-        activity: String
+        activity: String,
+        params: Object
       },
 
       ready: function() {
@@ -87,9 +90,9 @@
           }
         }
 
-        var params = null;
-        this.$.request.parameters = params;
-        location.href = '/#/home';
+        var params = {'id': id, 'description': 'yo', 'request': 1};
+        this.set('params', params);
+        // location.href = '/#/home';
       }
     });
   </script>

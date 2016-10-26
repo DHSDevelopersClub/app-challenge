@@ -124,11 +124,6 @@
         this.page = 'view404';
       },
 
-      changeProfile: function(googleUser) {
-        console.log(this)
-
-      },
-
       signIn: function() {
         var self = this;
         gapi.client.load('backend', 'v1', function() {
@@ -148,15 +143,8 @@
             };
 
             self.imageUrl = self.profile.imageUrl;
-            var request = gapi.client.backend.get_activities({
-              lat: 23,
-              long: 34,
-            });
-            request.execute(function(resp) {
-              console.log(resp);
-            });
 
-            var params = {'latitude': 23, 'longitude': 34, 'auth2': self.auth2};
+            var params = {'latitude': 23, 'longitude': 34, 'auth2': gapi.client.backend, 'request': 0};
             self.set('params', params);
 
           });

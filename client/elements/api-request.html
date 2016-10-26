@@ -18,18 +18,49 @@
       },
 
       _paramChange: function() {
-        this.getActivities(this.parameters);
-        console.log(parameters.auth2);
-        getUser(this.parameters);
+        if(this.parameters.request == 0){
+          this.getActivities(this.parameters);
+        }else{
+          this.addActivity(this.parameters);
+        }
       },
 
       getActivities: function(parameters) {
+        var self = this;
         console.log(parameters.auth2);
         request = parameters.auth2.get_activities({
             lat: parameters.latitude,
             lng: parameters.longitude,
         });
         request.execute(function(resp) {
+          console.log(resp.activites);
+          self.fire('iron-signal', {name: 'activities', data: resp.activites});
+        });
+      },
+
+      addActivity: function(parameters) {
+        var self = this;
+        console.log(parameters.auth2);
+        request = parameters.auth2.add_activity({
+            activity_id: parameters.id,
+            user_created_description: parameters.description,
+            lat: 23,
+            lat: 34,
+        });
+        request.execute(function(resp) {
+          self.getActivities(parameters);
+        });
+      },
+
+      insertUser: function(parameters) {
+        var self = this;
+        console.log(parameters.auth2);
+        request = parameters.auth2.insert_user({
+            lat: parameters.latitude,
+            lng: parameters.longitude,
+        });
+        request.execute(function(resp) {
+          console.log(resp.activites);
           self.fire('iron-signal', {name: 'activities', data: resp.activites});
         });
       }

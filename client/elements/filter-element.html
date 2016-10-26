@@ -25,6 +25,7 @@
       }
     </style>
 
+    <api-request parameters="{{params}}"></api-request>
     <iron-signals on-iron-signal-api="apiLoaded"></iron-signals>
 
     <div class="main vertical layout">
@@ -51,7 +52,8 @@
         lastValue: {
           type: Number,
           value: 20,
-        }
+        },
+        params: Object
       },
 
       ready: function() {
@@ -66,6 +68,8 @@
       },
 
       filterUpdate: function() {
+        var params = {'latitude': 45, 'longitude': 34, 'request': 0};
+        this.set('params', params);
         request = this.api.get_activities({
             distance: this.distanceValue,
             min_age: this.minAge,

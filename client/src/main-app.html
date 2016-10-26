@@ -131,35 +131,38 @@
 
       signIn: function() {
         var self = this;
-        gapi.auth2.init();
-        this.auth2 = gapi.auth2.getAuthInstance();
-        console.log(this.auth2);
+        gapi.client.load('backend', 'v1', function() {
+          console.log('run');
+          console.log(gapi);
 
-        this.auth2.signIn()
-        .then(function(googleUser){
+          gapi.auth2.init();
+          self.auth2 = gapi.auth2.getAuthInstance();
+          self.auth2.signIn()
+          .then(function(googleUser){
 
-          var apiProfile = googleUser.getBasicProfile();
+            var apiProfile = googleUser.getBasicProfile();
+            self.profile = {
+              name: apiProfile.getName(),
+              email: apiProfile.getEmail(),
+              imageUrl: apiProfile.getImageUrl()
+            };
 
-          self.profile = {
-            name: apiProfile.getName(),
-            email: apiProfile.getEmail(),
-            imageUrl: apiProfile.getImageUrl()
-          };
+            self.imageUrl = self.profile.imageUrl;
+            var request = gapi.client.backend.get_activities({
+              lat: 23,
+              long: 34,
+            });
+            request.execute(function(resp) {
+              console.log(resp);
+            });
 
-          self.imageUrl = self.profile.imageUrl;
+            var params = {'latitude': 23, 'longitude': 34, 'auth2': self.auth2};
+            self.set('params', params);
 
-          var request = self.auth2.getActivities({
-            lat: 23,
-            long: 34,
           });
-          request.execute(function(resp) {
-            console.log(resp.activities);
-          });
+        }, 'http://localhost:8080/_ah/api');
 
-          var params = {'latitude': 23, 'longitude': 34, 'auth2': self.auth2};
-          self.set('params', params);
 
-        });
       },
 
       displayNav: function(e, detail) {

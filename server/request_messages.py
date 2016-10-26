@@ -41,6 +41,5 @@ class ActivityList(messages.Message):
     activites = messages.MessageField(ActivityResponse, 1, repeated=True)
     cursor = messages.StringField(2)
 
-
 class StatusMessage(messages.Message):
     status = messages.EnumField(Status, 1, required=True)

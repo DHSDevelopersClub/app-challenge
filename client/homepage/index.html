@@ -5,7 +5,7 @@
     <meta name="google-signin-client_id" content="750712428354-g8ap5itgj6uh098oj3feiqqub39b1g1l.apps.googleusercontent.com">
     <title>Let's Go - Home</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://apis.google.com/js/api.js"></script>
+    <!-- <script src="https://apis.google.com/js/client.js?onload=init"></script> -->
   </head>
   <body>
 
@@ -52,11 +52,16 @@
     </div>
 
     <script>
+      console.log('please work');
+      this.init = function() {
+          console.log(gapi);
+      }
       var list = {"verbs": ['fun', 'creative', 'new', 'active', 'awesome', 'new', 'great', 'super', 'similar', 'athletic', 'smart']}
       var $adjective = this.$.adjective;
       function printRandom() {
         var i = Math.floor((Math.random() * list.verbs.length));
         $adjective.textContent = 'An app for finding ' + list.verbs[i] + ' friends.';
+        console.warn('shit');
       }
       window.setInterval(printRandom(), 900);
     </script>

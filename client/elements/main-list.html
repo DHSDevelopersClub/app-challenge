@@ -7,7 +7,6 @@
     <style is="custom-style" include="shared-styles iron-flex iron-flex-alignment">
       :host {
         display: block;
-        padding: 10px;
       }
 
       paper-fab#addButton {
@@ -102,6 +101,8 @@
 
     <paper-fab icon="add" id="addButton" on-tap="addButtonClicked"></paper-fab>
 
+    <request-user id="request"></request-user>
+
   </template>
 
   <script>
@@ -117,6 +118,11 @@
         }
       },
 
+      ready: function() {
+        // document.querySelector('iron-list').fire('iron-resize');
+        this.$.request.style.display = "none";
+      },
+
       computeData: function(e, detail, sender) {
         for(var i = 0; i < detail.length; i++){
           var num = detail[i].activity_id;
@@ -126,7 +132,9 @@
       },
 
       cardClicked: function() {
-        location.href = '#/activity';
+        this.$.list.style.display = "none";
+        this.$.addButton.style.display = "none";
+        this.$.request.style.display = "block";
       },
 
       addButtonClicked: function() {

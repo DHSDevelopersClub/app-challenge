@@ -127,11 +127,10 @@
       signIn: function() {
         var self = this;
         gapi.client.load('backend', 'v1', function() {
-          console.log('run');
-          console.log(gapi);
 
           gapi.auth2.init();
           self.auth2 = gapi.auth2.getAuthInstance();
+
           self.auth2.signIn()
           .then(function(googleUser){
 
@@ -142,15 +141,18 @@
               imageUrl: apiProfile.getImageUrl()
             };
 
+            //Set profile
             self.imageUrl = self.profile.imageUrl;
 
+            //Send request maker element data
             var params = {'latitude': 23, 'longitude': 34, 'auth2': gapi.client.backend, 'request': 0};
             self.set('params', params);
 
+            //Send iron signal to other elements with api data
+            self.fire('iron-signal', {name: 'backend', data: gapi.client.backend});
           });
+
         }, 'http://localhost:8080/_ah/api');
-
-
       },
 
       displayNav: function(e, detail) {

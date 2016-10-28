@@ -37,6 +37,7 @@
     </style>
 
     <api-request parameters="{{params}}"></api-request>
+    <iron-signals on-iron-signal-backend="apiLoaded"></iron-signals>
 
     <div class="main center vertical layout">
       <div class="card">
@@ -45,6 +46,7 @@
         <iron-ajax url="../src/activities.json" last-response="{{activities}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
         <vaadin-combo-box value="{{activity}}" items="[[activities]]"></vaadin-combo-box>
         <paper-date-picker date="{{date}}" min-date="October 19, 2016" max-date="December 31, 2016"></paper-date-picker>
+        <paper-input value="{{description}}" maxlength="115" label="Description"></paper-input>
         <paper-button on-tap="add" class="add flex self-end" raised>Submit<iron-icon icon="send"></iron-icon></paper-button>
 
       </div>
@@ -65,7 +67,17 @@
           type: Array
         },
         activity: String,
-        params: Object
+        description: String,
+        params: Object,
+        api: Object
+      },
+
+      ready: function() {
+        console.log('ready');
+      },
+
+      apiLoaded: function(e, api, sender) {
+        this.api = api;
       },
 
       ready: function() {
@@ -90,9 +102,8 @@
           }
         }
 
-        var params = {'id': id, 'description': 'yo', 'request': 1};
+        var params = {'id': id, 'description': this.description, 'request': 1, 'auth2': this.api};
         this.set('params', params);
-        // location.href = '/#/home';
       }
     });
   </script>

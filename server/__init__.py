@@ -13,6 +13,7 @@ import request_messages
 from google.appengine.datastore.datastore_query import Cursor
 # from geo import geomodel, geotypes
 from google.appengine.ext import ndb
+from math import cos, asin, sqrt
 
 API_EXPLORER = '292824132082.apps.googleusercontent.com'
 CLIENT_IDS = ['651504877594-9qh2hc91udrhht8gv1h69qarfa90hnt3.apps.googleusercontent.com',
@@ -20,6 +21,14 @@ CLIENT_IDS = ['651504877594-9qh2hc91udrhht8gv1h69qarfa90hnt3.apps.googleusercont
 
 __author__ = 'Sebastian Boyd, Duncan Grubbs'
 __copyright__ = 'Copyright (C) 2016 SB Technology Holdings International'
+
+def earth_distance(lat1, lon1, lat2, lon2):
+    '''Finds Distace between two points on earth'''
+    p = 0.017453292519943295
+    a = cos((lat2 - lat1) * p) / 2
+    b = cos(lat1 * p) * cos(lat2 * p) * (1 - cos((lon2 - lon1) * p)) / 2
+    c = 0.5 - a + b
+    return 12742 * asin(sqrt(c))
 
 @endpoints.api(name='backend', version='v1')
 class BackendAPI(remote.Service):
@@ -71,7 +80,7 @@ class BackendAPI(remote.Service):
             # User does not exist
             return request_messages.StatusMessage(status=request_messages.Status.BAD_DATA)
 
-        activity = models.Activity(activity_id=request.activity_id, parent=user_key)
+        activity = models.Activity(activity_id=request.activity_id, lat=request.lat, lng=request.lng, parent=user_key)
         if request.user_created_description:
             activity.user_created_description = request.user_created_description
 
@@ -96,12 +105,15 @@ class BackendAPI(remote.Service):
 
         print activities
         for a in activities:
+            print a
             user = a.key.parent().get()
             msg_user = request_messages.User(name=user.name, age=user.age)
-            activity = request_messages.ActivityResponse(activity_id=a.activity_id, user=msg_user, distance=9.5)
+            d = round(earth_distance(a.lat, a.lng, request.lat, request.lng),2)
+            activity = request_messages.ActivityResponse(activity_id=a.activity_id, user=msg_user, distance=d)
             if a.user_created_description:
                 activity.description = a.user_created_description
-            activity_message_list.append(activity)
+            if user.age <= request.max_age and user.age >= request.min_age:
+                activity_message_list.append(activity)
 
         if new_cursor and more:
             print new_cursor.urlsafe()

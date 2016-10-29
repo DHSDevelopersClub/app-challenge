@@ -35,7 +35,11 @@ class ActivityResponse(messages.Message):
 
 class ActivityRequest(messages.Message):
     activity_id = messages.IntegerField(1)
-    cursor = messages.StringField(2)
+    min_age = messages.IntegerField(2)
+    max_age = messages.IntegerField(3)
+    lat = messages.IntegerField(4)
+    lng = messages.IntegerField(5)
+    cursor = messages.StringField(6)
 
 class ActivityList(messages.Message):
     activites = messages.MessageField(ActivityResponse, 1, repeated=True)

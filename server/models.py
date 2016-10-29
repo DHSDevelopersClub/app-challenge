@@ -13,4 +13,5 @@ class User(ndb.Model):
 class Activity(geo.geomodel.GeoModel, ndb.Model):
     activity_id = ndb.IntegerProperty()
     user_created_description = ndb.StringProperty()
-    zip_code = ndb.IntegerProperty()
+    lat = ndb.FloatProperty()
+    lng = ndb.FloatProperty()

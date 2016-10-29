@@ -21,6 +21,8 @@
       }
     </style>
 
+    <iron-signals on-iron-signal-image="imageLoaded"></iron-signals>
+
     <div class="center vertical layout">
 
       <h1>Profile</h1>
@@ -42,7 +44,15 @@
 
   <script>
     Polymer({
-      is: 'profile-view'
+      is: 'profile-view',
+      properties: {
+        imageURL: String
+      },
+
+      imageLoaded: function(e, imageURL, sender) {
+        this.imageURL = imageURL;
+        console.log(this.imageURL);
+      },
     });
   </script>
 </dom-module>

@@ -144,6 +144,8 @@
             //Set profile
             self.imageUrl = self.profile.imageUrl;
 
+            self.fire('iron-signal', {name: 'image', data: self.imageUrl});
+
             //Send request maker element data
             var params = {'latitude': 23, 'longitude': 34, 'auth2': gapi.client.backend, 'request': 0};
             self.set('params', params);

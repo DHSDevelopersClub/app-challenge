@@ -31,6 +31,7 @@
 
       apiLoaded: function(e, api, sender) {
         this.api = api;
+        console.log(this.api);
       },
 
       getActivities: function(parameters) {
@@ -49,6 +50,7 @@
       },
 
       addActivity: function(parameters) {
+        console.log(this.api);
         var self = this;
         request = this.api.add_activity({
             activity_id: parameters.id,
@@ -57,7 +59,7 @@
             lng: 34,
         });
         request.execute(function(resp) {
-          self.getActivities(parameters);
+          console.log(resp);
         });
       },
 

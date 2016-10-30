@@ -116,7 +116,6 @@
       _pageChanged: function(page) {
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl(page + '-view.html');
-        console.log(resolvedPageUrl);
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
         this.drawerOpen = false;
       },

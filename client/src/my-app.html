@@ -229,6 +229,10 @@
         }
       },
 
+      ready: function() {
+        this.$.main.style.display = 'none';
+      },
+
       signIn: function() {
         this.$.main.style.display = 'block';
         this.$.homepage.style.display = 'none';

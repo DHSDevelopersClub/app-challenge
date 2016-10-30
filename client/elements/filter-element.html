@@ -26,6 +26,7 @@
     </style>
 
     <api-request parameters="{{params}}"></api-request>
+    <iron-signals on-iron-signal-location="locationLoaded"></iron-signals>
 
     <div class="main vertical layout">
       <h3>Filter</h3>
@@ -65,6 +66,9 @@
           });
         }
 
+      },
+      locationLoaded: function(e, location, sender) {
+        this.locationValue = location;
       }
     });
   </script>

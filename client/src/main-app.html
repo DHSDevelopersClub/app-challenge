@@ -149,9 +149,18 @@
             //Send iron signal to other elements with api data
             self.fire('iron-signal', {name: 'backend', data: gapi.client.backend});
 
-            //Send request maker element data
-            var params = {'latitude': 23, 'longitude': 34, 'request': 0, 'minAge': 18, 'maxAge': 99 };
-            self.set('params', params);
+            if(navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(function(position) {
+                //Send request maker element data
+                var params = {'latitude': position.coords.latitude, 'longitude': position.coords.longitude, 'request': 0, 'minAge': 18, 'maxAge': 99 };
+                self.set('params', params);
+
+                self.fire('iron-signal', {name: 'location', data: {lat: position.coords.latitude, lng: position.coords.longitude} });
+
+              });
+            }
+
+
           });
 
         }, 'http://localhost:8080/_ah/api');

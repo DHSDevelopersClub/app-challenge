@@ -44,7 +44,7 @@ class BackendAPI(remote.Service):
         current_user = endpoints.get_current_user()
         if current_user is None:
             raise endpoints.UnauthorizedException('Invalid token.')
-
+        print dir(current_user)
         # check user existance
         user = models.User.query(models.User.account == current_user).get()
 
@@ -111,12 +111,16 @@ class BackendAPI(remote.Service):
             print a
             user = a.key.parent().get()
             msg_user = request_messages.User(name=user.name, age=user.age)
-            #d = round(earth_distance(a.lat, a.lng, request.lat, request.lng),2)
-            d = 44.0
+            print request
+            print a
+            d = round(earth_distance(a.lat, a.lng, request.lat, request.lng),2)
             activity = request_messages.ActivityResponse(activity_id=a.activity_id, user=msg_user, distance=d)
             if a.user_created_description:
                 activity.description = a.user_created_description
-            if user.age <= request.max_age and user.age >= request.min_age:
+            if request.max_age and request.min_age:
+                if user.age <= request.max_age and user.age >= request.min_age:
+                    activity_message_list.append(activity)
+            else:
                 activity_message_list.append(activity)
 
         if new_cursor and more:

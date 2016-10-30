@@ -16,7 +16,7 @@ from google.appengine.ext import ndb
 from math import cos, asin, sqrt
 
 API_EXPLORER = '292824132082.apps.googleusercontent.com'
-CLIENT_IDS = ['651504877594-9qh2hc91udrhht8gv1h69qarfa90hnt3.apps.googleusercontent.com',
+CLIENT_IDS = ['750712428354-d569r948i29du5to3rklkgemsv2sgtvo.apps.googleusercontent.com',
               API_EXPLORER]
 
 __author__ = 'Sebastian Boyd, Duncan Grubbs'

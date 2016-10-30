@@ -37,12 +37,10 @@
     </style>
 
     <api-request parameters="{{params}}"></api-request>
-    <iron-signals on-iron-signal-backend="apiLoaded"></iron-signals>
 
     <div class="main center vertical layout">
       <div class="card">
         <h1>Add Activity</h1>
-        <api-request id="request"></api-request>
         <iron-ajax url="../src/activities.json" last-response="{{activities}}" loading="{{req}}" handle-as="json" auto></iron-ajax>
         <vaadin-combo-box value="{{activity}}" items="[[activities]]"></vaadin-combo-box>
         <paper-date-picker date="{{date}}" min-date="October 19, 2016" max-date="December 31, 2016"></paper-date-picker>
@@ -102,7 +100,7 @@
           }
         }
 
-        var params = {'id': id, 'description': this.description, 'request': 1, 'auth2': this.api};
+        var params = {'id': id, 'description': this.description, 'request': 1};
         this.set('params', params);
       }
     });

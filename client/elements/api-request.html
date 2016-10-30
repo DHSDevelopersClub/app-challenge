@@ -3,7 +3,7 @@
 <link rel="import" href="../elements/elements.html">
 <dom-module id="api-request">
   <template>
-
+    <iron-signals on-iron-signal-backend="apiLoaded"></iron-signals>
   </template>
 
   <script>
@@ -17,6 +17,10 @@
         }
       },
 
+      ready: function() {
+        console.log('ready');
+      },
+
       _paramChange: function() {
         if(this.parameters.request == 0){
           this.getActivities(this.parameters);
@@ -25,12 +29,18 @@
         }
       },
 
+      apiLoaded: function(e, api, sender) {
+        this.api = api;
+        console.log(this.api);
+      },
+
       getActivities: function(parameters) {
         var self = this;
-        console.log(parameters.auth2);
-        request = parameters.auth2.get_activities({
+        request = this.api.get_activities({
             lat: parameters.latitude,
             lng: parameters.longitude,
+            min_age: 1,
+            max_age: 99
         });
         request.execute(function(resp) {
           console.log(resp.activites);
@@ -40,12 +50,11 @@
 
       addActivity: function(parameters) {
         var self = this;
-        console.log(parameters.auth2);
-        request = parameters.auth2.add_activity({
+        request = this.api.add_activity({
             activity_id: parameters.id,
             user_created_description: parameters.description,
             lat: 23,
-            lat: 34,
+            lng: 34,
         });
         request.execute(function(resp) {
           self.getActivities(parameters);
@@ -54,8 +63,7 @@
 
       insertUser: function(parameters) {
         var self = this;
-        console.log(parameters.auth2);
-        request = parameters.auth2.insert_user({
+        request = this.api.insert_user({
             lat: parameters.latitude,
             lng: parameters.longitude,
         });

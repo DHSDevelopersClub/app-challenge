@@ -116,6 +116,7 @@
       _pageChanged: function(page) {
         // Load page import on demand. Show 404 page if fails
         var resolvedPageUrl = this.resolveUrl(page + '-view.html');
+        console.log(resolvedPageUrl);
         this.importHref(resolvedPageUrl, null, this._showPage404, true);
         this.drawerOpen = false;
       },
@@ -146,12 +147,12 @@
 
             self.fire('iron-signal', {name: 'image', data: self.imageUrl});
 
+            //Send iron signal to other elements with api data
+            self.fire('iron-signal', {name: 'backend', data: gapi.client.backend});
+
             //Send request maker element data
             var params = {'latitude': 23, 'longitude': 34, 'auth2': gapi.client.backend, 'request': 0};
             self.set('params', params);
-
-            //Send iron signal to other elements with api data
-            self.fire('iron-signal', {name: 'backend', data: gapi.client.backend});
           });
 
         }, 'http://localhost:8080/_ah/api');

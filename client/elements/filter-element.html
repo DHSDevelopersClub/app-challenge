@@ -26,7 +26,6 @@
     </style>
 
     <api-request parameters="{{params}}"></api-request>
-    <iron-signals on-iron-signal-backend="apiLoaded"></iron-signals>
 
     <div class="main vertical layout">
       <h3>Filter</h3>
@@ -64,12 +63,8 @@
         });
       },
 
-      apiLoaded: function(e, api, sender) {
-        this.api = api;
-      },
-
       filterUpdate: function() {
-        var params = {'id': 0, 'request': 0, 'auth2': this.api};
+        var params = {'id': 0, 'request': 0};
         this.set('params', params);
       }
     });

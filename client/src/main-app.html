@@ -111,6 +111,13 @@
 
       _routePageChanged: function(page) {
         this.page = page || 'home';
+        // if (this.actualLocation) {
+        //   if (this.page == 'home') {
+        //     var params = {'lat': this.actualLocation.lat, 'lng': this.actualLocation.lng, 'request': 0, 'minAge': 18, 'maxAge': 99 };
+        //     self.set('params', params);
+        //   }
+        // }
+
       },
 
       _pageChanged: function(page) {
@@ -152,10 +159,10 @@
             if(navigator.geolocation) {
               navigator.geolocation.getCurrentPosition(function(position) {
                 //Send request maker element data
-                var params = {'latitude': position.coords.latitude, 'longitude': position.coords.longitude, 'request': 0, 'minAge': 18, 'maxAge': 99 };
+                var params = {'lat': position.coords.latitude, 'lng': position.coords.longitude, 'request': 0, 'minAge': 18, 'maxAge': 99 };
                 self.set('params', params);
-
-                self.fire('iron-signal', {name: 'location', data: {lat: position.coords.latitude, lng: position.coords.longitude} });
+                this.actualLocation = {lat: position.coords.latitude, lng: position.coords.longitude};
+                self.fire('iron-signal', {name: 'location', data: this.actualLocation});
 
               });
             }

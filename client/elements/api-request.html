@@ -38,8 +38,8 @@
         console.log(parameters);
         var self = this;
         request = this.api.get_activities({
-            lat: parameters.latitude,
-            lng: parameters.longitude,
+            lat: parameters.lat,
+            lng: parameters.lng,
             min_age: parameters.minAge,
             max_age: parameters.maxAge
         });

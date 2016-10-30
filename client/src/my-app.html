@@ -229,19 +229,6 @@
         }
       },
 
-      ready: function() {
-        var self = this;
-        this.$.main.style.display = 'none';
-        var list = {"verbs": ['fun', 'creative', 'new', 'active', 'awesome', 'new', 'great', 'super', 'similar', 'athletic', 'smart']}
-        var $adjective = this.$.adjective;
-        window.setInterval(self.printRandom(list, $adjective), 900);
-      },
-
-      printRandom: function(list, $adjective) {
-        var i = Math.floor((Math.random() * list.verbs.length));
-        $adjective.textContent = 'An app for finding ' + list.verbs[i] + ' friends.';
-      },
-
       signIn: function() {
         this.$.main.style.display = 'block';
         this.$.homepage.style.display = 'none';

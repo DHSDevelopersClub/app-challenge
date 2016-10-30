@@ -31,7 +31,6 @@
 
       apiLoaded: function(e, api, sender) {
         this.api = api;
-        console.log(this.api);
       },
 
       getActivities: function(parameters) {
@@ -40,8 +39,8 @@
         request = this.api.get_activities({
             lat: parameters.latitude,
             lng: parameters.longitude,
-            min_age: 1,
-            max_age: 99
+            min_age: parameters.minAge,
+            max_age: parameters.maxAge
         });
         request.execute(function(resp) {
           console.log(resp.activites);

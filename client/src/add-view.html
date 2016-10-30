@@ -92,9 +92,12 @@
           }
         }
 
-        var params = {'id': id, 'description': this.description, 'request': 1, 'lat': this.locationValue.lat, 'lng': this.locationValue.lng};
-        self.set('params', params);
-      },
+        if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var params = {'id': id, 'description': self.description, 'request': 1, 'lat': position.coords.latitude, 'lng': position.coords.longitude};
+            self.set('params', params);
+          });
+        }
 
       locationLoaded: function(e, location, sender) {
         this.locationValue = location;

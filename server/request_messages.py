@@ -24,8 +24,8 @@ class User(messages.Message):
 class Activity(messages.Message):
     activity_id = messages.IntegerField(1) # optional
     user_created_description = messages.StringField(2)
-    lat = messages.IntegerField(3)
-    lng = messages.IntegerField(4)
+    lat = messages.FloatField(3)
+    lng = messages.FloatField(4)
 
 class ActivityResponse(messages.Message):
     activity_id = messages.IntegerField(1)
@@ -37,8 +37,8 @@ class ActivityRequest(messages.Message):
     activity_id = messages.IntegerField(1)
     min_age = messages.IntegerField(2)
     max_age = messages.IntegerField(3)
-    lat = messages.IntegerField(4)
-    lng = messages.IntegerField(5)
+    lat = messages.FloatField(4)
+    lng = messages.FloatField(5)
     cursor = messages.StringField(6)
 
 class ActivityList(messages.Message):

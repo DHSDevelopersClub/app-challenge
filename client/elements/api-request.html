@@ -50,13 +50,13 @@
       },
 
       addActivity: function(parameters) {
-        console.log(this.api);
+        console.log(parameters);
         var self = this;
         request = this.api.add_activity({
             activity_id: parameters.id,
             user_created_description: parameters.description,
-            lat: 23,
-            lng: 34,
+            lat: parameters.lat,
+            lng: parameters.lng,
         });
         request.execute(function(resp) {
           console.log(resp);

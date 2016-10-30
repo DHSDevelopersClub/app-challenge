@@ -84,6 +84,7 @@
         var date = this.date;
         var activity = this.activity;
         var id;
+        var self = this;
 
         for(var i = 0; i < this.activities.length; i++){
           if(activity == this.activities[i]){
@@ -91,8 +92,13 @@
           }
         }
 
-        var params = {'id': id, 'description': this.description, 'request': 1};
-        this.set('params', params);
+        if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var params = {'id': id, 'description': this.description, 'request': 1, 'lat': position.coords.latitude, 'lng': position.coords.longitude};
+            self.set('params', params);
+          });
+        }
+
       }
     });
   </script>

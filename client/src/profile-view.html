@@ -29,7 +29,7 @@
 
       <div class="card">
         <h1>Name and Image</h1>
-        <img id="profile" src="../images/profiles/default-profile.jpg"/>
+        <img id="profile" src="[[imageURL]]"/>
       </div>
 
       <div class="card">
@@ -51,7 +51,6 @@
 
       imageLoaded: function(e, imageURL, sender) {
         this.imageURL = imageURL;
-        console.log(this.imageURL);
       },
     });
   </script>

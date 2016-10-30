@@ -110,9 +110,7 @@
       is: 'main-list',
 
       properties: {
-        dataList: {
-          type: Array,
-        },
+        list: Array,
         activities: {
           type: Object,
         }
@@ -124,11 +122,16 @@
       },
 
       computeData: function(e, detail, sender) {
-        for(var i = 0; i < detail.length; i++){
-          var num = detail[i].activity_id;
-          detail[i].activityName = this.activities[num];
+        if(detail != null){
+          for(var i = 0; i < detail.length; i++){
+            var num = detail[i].activity_id;
+            detail[i].activityName = this.activities[num];
+          }
+          this.list = detail;
+        }else{
+          this.set('list', null);
+          console.log(this.list);
         }
-        this.list = detail;
       },
 
       cardClicked: function() {

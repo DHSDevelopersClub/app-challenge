@@ -56,16 +56,15 @@
         api: Object
       },
 
-      ready: function() {
-        var $distance = this.$.distance;
-        $distance.addEventListener("change", function(e) {
-          this.distanceValue = $distance.value;
-        });
-      },
-
       filterUpdate: function() {
-        var params = {'request': 0, 'minAge': this.minAge, 'maxAge': this.maxAge };
-        this.set('params', params);
+        var self = this;
+        if(navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(function(position) {
+            var params = {'request': 0, 'minAge': self.minAge, 'maxAge': self.maxAge };
+            self.set('params', params);
+          });
+        }
+
       }
     });
   </script>

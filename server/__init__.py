@@ -66,7 +66,8 @@ class BackendAPI(remote.Service):
                       request_messages.StatusMessage,
                       name='add_activity',
                       path='activites/add',
-                      http_method='POST')
+                      http_method='POST',
+                      allowed_client_ids=CLIENT_IDS)
     def add_activity(self, request):
         ''' add activity '''
         current_user = endpoints.get_current_user()

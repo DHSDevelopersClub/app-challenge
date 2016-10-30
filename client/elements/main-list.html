@@ -124,6 +124,7 @@
       },
 
       computeData: function(e, detail, sender) {
+        console.log(detail);
         for(var i = 0; i < detail.length; i++){
           var num = detail[i].activity_id;
           detail[i].activityName = this.activities[num];

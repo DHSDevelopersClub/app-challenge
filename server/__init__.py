@@ -37,7 +37,8 @@ class BackendAPI(remote.Service):
                       request_messages.StatusMessage,
                       name='insert_user',
                       path='insert_user',
-                      http_method='POST')
+                      http_method='POST',
+                      allowed_client_ids=CLIENT_IDS)
     def insert_user(self, request):
         ''' add user '''
         current_user = endpoints.get_current_user()
@@ -93,7 +94,8 @@ class BackendAPI(remote.Service):
                       request_messages.ActivityList,
                       name='get_activities',
                       path='activites/list',
-                      http_method='POST')
+                      http_method='POST',
+                      allowed_client_ids=CLIENT_IDS)
     def get_activities(self, request):
         ''' get activites '''
         activity_message_list = []
@@ -109,7 +111,8 @@ class BackendAPI(remote.Service):
             print a
             user = a.key.parent().get()
             msg_user = request_messages.User(name=user.name, age=user.age)
-            d = round(earth_distance(a.lat, a.lng, request.lat, request.lng),2)
+            #d = round(earth_distance(a.lat, a.lng, request.lat, request.lng),2)
+            d = 44.0
             activity = request_messages.ActivityResponse(activity_id=a.activity_id, user=msg_user, distance=d)
             if a.user_created_description:
                 activity.description = a.user_created_description

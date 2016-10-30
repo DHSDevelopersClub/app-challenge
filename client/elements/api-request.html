@@ -35,6 +35,7 @@
       },
 
       getActivities: function(parameters) {
+        console.log(parameters);
         var self = this;
         request = this.api.get_activities({
             lat: parameters.latitude,
